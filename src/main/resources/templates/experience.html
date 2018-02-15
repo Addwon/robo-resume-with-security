@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Experience</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+
+</head>
+<body>
+<div th:replace="base :: navlinks"></div>
+
+
+<form action="#"
+      th:action="@{/experience}"
+      th:object="${experience}"
+      method="post">
+    <div class="col-3">
+        <input type="hidden" th:field="*{id}" />
+    </div>
+    <div class="col-3">
+        <label id="labelExperience">Add Educational Achievements</label>
+    </div>
+    <div class="col-3">
+        <label id="labelJobPosition">Job Position</label>
+        <input type="text" class="form-control" id="textJobPosition" th:field="*{jobPosition}" placeholder="Enter job position"/>
+        <span th:if="${#fields.hasErrors('jobPosition')}" th:errors="*{jobPosition}"></span>
+    </div>
+    <div class="col-3">
+        <label id="labelCompany">Company</label>
+        <input type="text" class="form-control" id="textCompany" th:field="*{company}" placeholder="Enter Company"/>
+        <span th:if="${#fields.hasErrors('company')}" th:errors="*{company}"></span>
+    </div>
+    <div class="col-3">
+        <label id="labelDuration">Duration</label>
+        <input type="text" class="form-control" id="textDuration" th:field="*{duration}" placeholder="Enter duration"/>
+        <span th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}"></span>
+    </div>
+
+    <!--<div class="col-3">-->
+        <!--<label id="labelDuties">Duties</label>-->
+        <!--<input type="text-area" class="form-control" id="textDuties" th:field="*{duties}" placeholder="Enter duties"/>-->
+        <!--<span th:if="${#fields.hasErrors('duties')}" th:errors="*{duties}"></span>-->
+    <!--</div>-->
+    <div class="col-6">
+        <label id="labelDuties">Duties</label><br/>
+        <textarea class="col-6" id="textDuties" th:field="*{duties}" rows="3" placeholder="Enter duties"></textarea>
+        <span th:if="${#fields.hasErrors('duties')}" th:errors="*{duties}"></span>
+    </div>
+
+    <div class="col-3">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+
+</form>
+<div th:replace="base :: footer"></div>
+</body>
+</html>

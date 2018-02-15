@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Contact Info</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+
+</head>
+<body>
+<div th:replace="base :: navlinks"></div>
+
+
+<form action="#"
+      th:action="@{/contactinfo}"
+      th:object="${user}"
+      enctype="multipart/form-data"
+      method="post">
+    <div class="col-3">
+        <input type="hidden" th:field="*{id}" />
+    </div>
+    <div class="col-3">
+        <label id="labelContactInfo">Add Contact Information</label>
+    </div>
+    <div class="col-3">
+        <label id="labelFirstName">First Name</label>
+        <input type="text" class="form-control" id="textFirstName" th:field="*{firstName}" placeholder="Enter first name"/>
+        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+    </div>
+    <div class="col-3">
+        <label id="labelLastName">Last Name</label>
+        <input type="text" class="form-control" id="textLastName" th:field="*{lastName}" placeholder="Enter last name"/>
+        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+    </div>
+    <div class="col-3">
+        <label id="labelEmail">Email</label>
+        <input type="email" class="form-control" id="emailEmail" th:field="*{email}" placeholder="Enter email"/>
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+    </div>
+
+    <div class="col-3">
+        <label id="labelImage">Image</label>
+        <input type="file" name="file" />
+    </div>
+
+    <div class="col-3">
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+        <!--<input type="text" class="form-control" id="textimagePath" th:field="*{imagePath}" placeholder="Enter url or path"/><br />-->
+    <!--</div>-->
+    <!--<div class="col-3">-->
+        <!--<input type="hidden" th:field="*{availability}" />-->
+    <!--</div>-->
+    <!--<div class="col-3">-->
+        <!--<button type="submit" class="btn btn-primary">Submit</button>-->
+    <!--</div>-->
+    <!--
+      <input type="file" class="form-control-file" id="imageBook" th:field="*{image}"/>
+      <span th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></span><br />-->
+</form>
+<div th:replace="base :: footer"></div>
+</body>
+</html>

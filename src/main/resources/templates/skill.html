@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Skill</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+
+</head>
+<body>
+<div th:replace="base :: navlinks"></div>
+
+
+<form action="#"
+      th:action="@{/skill}"
+      th:object="${skill}"
+      method="post">
+    <div class="col-3">
+        <input type="hidden" th:field="*{id}" />
+    </div>
+    <div class="col-3">
+        <label id="labelSkill">Add Skills</label>
+    </div>
+    <div class="col-3">
+        <label id="labelType">Skill Type</label>
+        <input type="text" class="form-control" id="textSkillType" th:field="*{type}" placeholder="Enter skill type"/>
+        <span th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></span>
+    </div>
+    <div class="col-3">
+        <label id="labelSkillLevel">Skill Level</label>
+        <Select th:field="*{skillLevel}">
+            <option value="familiar" >Familiar</option>
+            <option value="skilled" >Skilled</option>
+            <option value="proficient" >Proficient</option>
+        </Select>
+        <span th:if="${#fields.hasErrors('skillLevel')}" th:errors="*{skillLevel}"></span>
+    </div>
+    <div class="col-3">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+
+</form>
+<div th:replace="base :: footer"></div>
+</body>
+</html>
