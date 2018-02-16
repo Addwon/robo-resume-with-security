@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.Map;
 
 @Controller
@@ -35,6 +36,9 @@ public class HomeController {
 
     @Autowired
     CloudinaryConfig cloudc;
+
+    @Autowired
+    UserRepository userRepository;
 
     @Autowired
     private UserService userService;
@@ -205,8 +209,27 @@ public class HomeController {
         return"showcoverletter";
     }
     @RequestMapping("/showreference")
-    public String ShowReference(Model model){
-        model.addAttribute("references",referenceRepository.findAll());
-        return"showreference";
+    public String ShowReference(User user,Principal p,Model model){
+//        //user=userRepository.findOne(id);
+//        model.addAttribute("references", referenceRepository.findAll());
+//        String activeUserType="";
+//        activeUserType=user.getUsertype();
+//        System.out.println(user.getUsertype());
+//
+//        System.out.println(p.getName());
+//        String activeUserType="";
+//        activeUserType=user.getUsertype();
+//        //activeUser=p.getName().toString();
+//        //System.out.println(activeUser);
+//        if(activeUserType=="Applicant") {
+//            model.addAttribute("references", referenceRepository.findAll());
+//            return "showreference";
+//        }
+//        else{
+//            System.out.println("Access Denied");
+//            return "redirect:/";
+//        }
+        model.addAttribute("references", referenceRepository.findAll());
+        return "showreference";
     }
 }

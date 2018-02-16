@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8" />
     <title>Base</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
 
 </head>
 <body>
 <div th:fragment="navlinks">
     <!--<a href="/">index</a>-<a href="/2">Add Resume</a>-<a href="/3">Show Resume</a>-->
-
+<div class=container">
     <nav class="navbar navbar-expand-sm bg-light navbar-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -34,9 +34,12 @@
             <li class="nav-item">
                 <a class="nav-link" href="/experience">Experience</a>
             </li>
-            <!--<li class="nav-item">-->
-                <!--<a class="nav-link" href="/reference">References</a>-->
-            <!--</li>-->
+            <li class="nav-item">
+                <a class="nav-link" href="/reference">Add Reference</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/showreference">Show Reference</a>
+            </li>
 
             <li class="nav-item dropdown">
 
@@ -48,18 +51,6 @@
                     <a class="dropdown-item" href="/showcoverletter">Cover Letter</a>
                 </div>
             </li>
-
-            <!--<li class="nav-item dropdown">-->
-                <!--<a class="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-                    <!--View-->
-                <!--</a>-->
-                <!--<div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
-                    <!--<a class="dropdown-item" href="/completedresume">Completed Resume</a>-->
-                    <!--<a class="dropdown-item" href="/coverletter">Cover Letter</a>-->
-                    <!--&lt;!&ndash;<div class="dropdown-divider"></div>                    &ndash;&gt;-->
-                <!--</div>-->
-            <!--</li>-->
-
             <li class="nav-item">
                 <a class="nav-link" href="/register">Sign up</a>
             </li>
@@ -67,14 +58,10 @@
                 <a class="nav-link" href="/login">Login</a>
             </li>
 
-            <!--<li class="nav-item">-->
-                <!--<a th:href="register">Sign up</a>-->
-            <!--</li>-->
-            <!--<li class="nav-item">-->
-                <!--<a th:href="login">Login</a>-->
-            <!--</li>-->
         </ul>
     </nav>
+
+</div>
 </div>
 
 <div th:fragment="footer">copyright 2018</div>

@@ -27,6 +27,9 @@ public class UserService {
     public User findByUsername(String username){
         return userRepository.findByEmail(username);
     }
+    public User findByUsertype(String usertype){
+        return userRepository.findByUsertype(usertype);
+    }
     public void saveUser(User user){
         user.setRoles(Arrays.asList(roleRepository.findByRole("USER")));
         user.setEnabled(true);

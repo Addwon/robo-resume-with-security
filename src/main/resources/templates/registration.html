@@ -11,6 +11,26 @@
 <body>
 <h4>New User Registration</h4>
 <form autocomplete="off" action="#" th:action="@{/register}" th:object="${user}" method="post">
+    Category:
+    <!-- Iterate on ${genders} -->
+    <!--<div class="radio" th:field="*{usertype}">-->
+        <!--&lt;!&ndash; Use th:field to check *{gender} &ndash;&gt;-->
+        <!--<input type="radio" />-->
+        <!--<label>Applicant</label>-->
+        <!--<input type="radio" />-->
+        <!--<label>Employer</label>-->
+    <!--</div>-->
+    <!--User Type <mark><strong><span th:if="${#fields.hasErrors('usertype')}" th:errors="*{usertype}">User type error</span></strong></mark>-->
+            <!--<input type="radio" id="UserType" placeholder="User type" th:field="*{usertype}"/>Applicant<br />-->
+            <!--<input type="radio" id="UserType" placeholder="User type" th:field="*{usertype}"/>Employee<br />-->
+    <div class="col-3">
+        <label id="labelusertype">User type</label>
+        <Select th:field="*{usertype}">
+            <option value="Applicant" >Applicant</option>
+            <option value="Employer" >Employer</option>
+        </Select>
+        <span th:if="${#fields.hasErrors('usertype')}" th:errors="*{usertype}"></span>
+    </div><br/>
     First Name <mark><strong><span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</span></strong></mark>
                 <input type="text" id="firstName" placeholder="First Name" th:field="*{firstName}"/><br />
     Last Name <mark><strong><span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name Error</span></strong></mark>

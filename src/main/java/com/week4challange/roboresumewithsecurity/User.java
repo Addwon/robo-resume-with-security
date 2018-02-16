@@ -27,18 +27,22 @@ public class User {
     @Column(name="username")
     private String username;
 
+    @Column(name="usertype")
+    private String usertype;
+
     @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(joinColumns=@JoinColumn(name = "user_id"),
     inverseJoinColumns=@JoinColumn(name="role_id"))
     private Collection<Role> roles;
 
-    public User(String email, String password, String firstName, String lastName, boolean enabled, String username) {
+    public User(String email, String password, String firstName, String lastName, boolean enabled, String username,String usertype) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.enabled = enabled;
         this.username = username;
+        this.usertype=usertype;
     }
 
     public User() {
@@ -106,6 +110,14 @@ public class User {
 
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getUsertype() {
+        return usertype;
+    }
+
+    public void setUsertype(String usertype) {
+        this.usertype = usertype;
     }
 }
 
