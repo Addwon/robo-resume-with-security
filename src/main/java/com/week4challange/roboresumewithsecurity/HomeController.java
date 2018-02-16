@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.Map;
@@ -17,7 +16,7 @@ import java.util.Map;
 @Controller
 public class HomeController {
     @Autowired
-    UserRepository userRepository;
+    UserDataRepository userdataRepository;
 
     @Autowired
     EducationRepository educationRepository;
@@ -37,18 +36,30 @@ public class HomeController {
     @Autowired
     CloudinaryConfig cloudc;
 
+    @Autowired
+    private UserService userService;
+
+
+
     @RequestMapping("/")
     public String showIndex(Model model){
         return "index";
     }
+
+    @RequestMapping("/login")
+    public String login(){
+        System.out.println("login page returned");
+        return "login";
+    }
+
     //Add contact info
     @GetMapping("/contactinfo")
     public String addContactInfo(Model model){
-        model.addAttribute("user",new User());
+        model.addAttribute("user",new UserData());
         return "contactinfo";
     }
     @PostMapping("/addcontactinfo")
-    public String addContactInfoForm(@Valid @ModelAttribute("user") User user, @RequestParam("file")MultipartFile file, BindingResult result,
+    public String addContactInfoForm(@Valid @ModelAttribute("user") UserData user, @RequestParam("file")MultipartFile file, BindingResult result,
                                  RedirectAttributes redirectAttributes){
         if(file.isEmpty()){
             return "contactinfo";
@@ -66,7 +77,7 @@ public class HomeController {
             return "contactinfo";
         }
         else{
-            userRepository.save(user);
+            userdataRepository.save(user);
             return "redirect:/";
         }
 
@@ -158,19 +169,44 @@ public class HomeController {
             return "redirect:/";
         }
     }
+
+    //For user registration
+    @RequestMapping(value="/register",method=RequestMethod.GET)
+    public String showRegistrationPage(Model model){
+        model.addAttribute("user",new User());
+        return "registration";
+    }
+
+
+    @RequestMapping(value="/register",method= RequestMethod.POST)
+    public String processRegistrationPage(@Valid @ModelAttribute("User") User user, BindingResult result, Model model){
+        model.addAttribute("user",user);
+        if(result.hasErrors()){
+            return "registration";
+        }else{
+            userService.saveUser(user);
+            model.addAttribute("message","User Account Successfully Created");
+        }
+        return "redirect:/";
+    }
+
     @RequestMapping("/completedresume")
     public String showCompleteResume(Model model){
-        model.addAttribute("users",userRepository.findAll());
+        model.addAttribute("users",userdataRepository.findAll());
         model.addAttribute("educations",educationRepository.findAll());
         model.addAttribute("experiences",experienceRepository.findAll());
         model.addAttribute("skills",skillRepository.findAll());
         model.addAttribute("covers",coverRepository.findAll());
         return "completedresume";
     }
+    @RequestMapping("/showcoverletter")
+    public String ShowCoverLetter(Model model){
+        model.addAttribute("references",referenceRepository.findAll());
+        return"showcoverletter";
+    }
     @RequestMapping("/showreference")
-    public String listRooms(Model model){
+    public String ShowReference(Model model){
         model.addAttribute("references",referenceRepository.findAll());
         return"showreference";
     }
-
 }

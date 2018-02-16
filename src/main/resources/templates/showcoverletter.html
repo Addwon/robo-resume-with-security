@@ -2,14 +2,20 @@
 <html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
-    <title>Index</title>
+    <title>Show</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
 
 </head>
 <body>
 <div th:replace="base :: navlinks"></div>
-<a href="/completedresume">Show Resume</a>
+<div class="container">
+    <h2>Reference</h2>
+    <div class="card">
+        <div class="card-body" th:each="cover : ${covers}">
+            <Span th:text="${cover.coverLetter}"></Span>
+        </div>
+    </div>
+</div>
 <div th:replace="base :: footer"></div>
-
 </body>
 </html>
