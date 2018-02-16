@@ -3,9 +3,15 @@ package com.week4challange.roboresumewithsecurity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import java.io.IOException;
+import java.util.Map;
 
 @Controller
 public class HomeController {
@@ -25,7 +31,76 @@ public class HomeController {
         //model.addAttribute("rooms",roomRepository.findAllByListTypeContainingIgnoreCase("Public"));
         return "index";
     }
+    //Add contact info
+    @GetMapping("/contactinfo")
+    public String addContactInfo(Model model){
+        model.addAttribute("user",new User());
+        return "contactinfo";
+    }
+    @PostMapping("/addcontactinfo")
+    public String addContactInfoForm(@Valid @ModelAttribute("user") User user, @RequestParam("file")MultipartFile file, BindingResult result,
+                                 RedirectAttributes redirectAttributes){
+        if(result.hasErrors()){
+            return "contactinfo";
+        }
+        else{
+            userRepository.save(user);
+            return "redirect:/";
+        }
 
+    }
+
+    //Add educational achievements
+    @GetMapping("/education")
+    public String addEducation(Model model){
+        model.addAttribute("education",new Education());
+        return "education";
+    }
+    @PostMapping("/addeducation")
+    public String addEducationForm(@Valid @ModelAttribute("education") Education education, BindingResult result,
+                                 RedirectAttributes redirectAttributes){
+        if(result.hasErrors()){
+            return "education";
+        }
+        else{
+            educationRepository.save(education);
+            return "redirect:/";
+        }
+    }
+    //Add work experience
+    @GetMapping("/experience")
+    public String addExperience(Model model){
+        model.addAttribute("experience",new Experience());
+        return "experience";
+    }
+    @PostMapping("/addexperience")
+    public String addExperienceForm(@Valid @ModelAttribute("experience") Experience experience, BindingResult result,
+                                   RedirectAttributes redirectAttributes){
+        if(result.hasErrors()){
+            return "experience";
+        }
+        else{
+            experienceRepository.save(experience);
+            return "redirect:/";
+        }
+    }
+    //Add skills
+    @GetMapping("/skill")
+    public String addSkill(Model model){
+        model.addAttribute("skill",new Skill());
+        return "skill";
+    }
+    @PostMapping("/addskill")
+    public String addSkillForm(@Valid @ModelAttribute("skill") Skill skill, BindingResult result,
+                                    RedirectAttributes redirectAttributes){
+        if(result.hasErrors()){
+            return "skill";
+        }
+        else{
+            skillRepository.save(skill);
+            return "redirect:/";
+        }
+    }
 //    @RequestMapping("/summary")
 //    public String summary(Model model){
 //        //model.addAttribute("rooms",roomRepository.findAllByListTypeContainingIgnoreCase("Public"));

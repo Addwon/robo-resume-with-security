@@ -30,6 +30,8 @@ public class User {
 
     private String coverLetter;
 
+    private String summary;
+
     public long getId() {
         return id;
     }
@@ -76,5 +78,13 @@ public class User {
 
     public void setCoverLetter(String coverLetter) {
         this.coverLetter = coverLetter;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 }
