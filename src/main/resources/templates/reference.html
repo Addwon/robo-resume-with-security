@@ -1,10 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" />
+    <title>Reference</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+
 </head>
 <body>
+<div th:replace="base :: navlinks"></div>
 
+
+<form action="#"
+      th:action="@{/addreference}"
+      th:object="${reference}"
+            method="post">
+    <div class="col-3">
+        <input type="hidden" th:field="*{id}" />
+    </div>
+    <div class="col-3">
+        <label id="labelContactInfo">Add Reference Information</label>
+    </div>
+    <div class="col-3">
+        <label id="labelReferenceFirstName">First Name</label>
+        <input type="text" class="form-control" id="textReferenceFirstName" th:field="*{referenceFirstName}" placeholder="Enter first name"/>
+        <span th:if="${#fields.hasErrors('referenceFirstName')}" th:errors="*{referenceFirstName}"></span>
+    </div>
+    <div class="col-3">
+        <label id="labelReferenceLastName">Last Name</label>
+        <input type="text" class="form-control" id="textReferenceLastName" th:field="*{referenceLastName}" placeholder="Enter last name"/>
+        <span th:if="${#fields.hasErrors('referenceLastName')}" th:errors="*{referenceLastName}"></span>
+    </div>
+    <div class="col-3">
+        <label id="labelReferenceJobPosition">Job Position</label>
+        <input type="text" class="form-control" id="textReferenceJobPosition" th:field="*{referenceJobPosition}" placeholder="Enter job position"/>
+        <span th:if="${#fields.hasErrors('referenceJobPosition')}" th:errors="*{referenceJobPosition}"></span>
+    </div>
+    <div class="col-3">
+        <label id="labelReferenceCompany">Company</label>
+        <input type="text" class="form-control" id="textReferenceCompany" th:field="*{referenceCompany}" placeholder="Enter Company"/>
+        <span th:if="${#fields.hasErrors('referenceCompany')}" th:errors="*{referenceCompany}"></span>
+    </div>
+    <div class="col-3">
+        <label id="labelReferenceAddress">Address</label>
+        <input type="text" class="form-control" id="textReferenceAddress" th:field="*{referenceAddress}" placeholder="Enter Address"/>
+        <span th:if="${#fields.hasErrors('referenceAddress')}" th:errors="*{referenceAddress}"></span>
+    </div>
+    <div class="col-3">
+        <label id="labelReferenceCity">City</label>
+        <input type="text" class="form-control" id="textReferenceCity" th:field="*{referenceCity}" placeholder="Enter City"/>
+        <span th:if="${#fields.hasErrors('referenceCity')}" th:errors="*{referenceCity}"></span>
+    </div>
+    <div class="col-3">
+        <label id="labelPhone">Phone Number</label>
+        <input type="number" class="form-control" id="numberPhone" th:field="*{referencePhone}" placeholder="Enter Phone Number"/>
+        <span th:if="${#fields.hasErrors('referencePhone')}" th:errors="*{referencePhone}"></span>
+    </div><br/>
+    <div class="col-3">
+        <label id="labelReferenceEmail">Email</label>
+        <input type="email" class="form-control" id="emailReferenceEmail" th:field="*{referenceEmail}" placeholder="Enter email"/>
+        <span th:if="${#fields.hasErrors('referenceEmail')}" th:errors="*{referenceEmail}"></span>
+    </div>
+
+    <br/>
+
+    <div class="col-3">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    <!--<input type="text" class="form-control" id="textimagePath" th:field="*{imagePath}" placeholder="Enter url or path"/><br />-->
+    <!--</div>-->
+    <!--<div class="col-3">-->
+    <!--<input type="hidden" th:field="*{availability}" />-->
+    <!--</div>-->
+    <!--<div class="col-3">-->
+    <!--<button type="submit" class="btn btn-primary">Submit</button>-->
+    <!--</div>-->
+    <!--
+      <input type="file" class="form-control-file" id="imageBook" th:field="*{image}"/>
+      <span th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></span><br />-->
+</form>
+<div th:replace="base :: footer"></div>
 </body>
 </html>

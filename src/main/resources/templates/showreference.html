@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Show</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+
+</head>
+<body>
+<div th:replace="base :: navlinks"></div>
+<div class="container">
+    <h2>Reference</h2>
+    <div class="card">
+        <div class="card-body" th:each="reference : ${references}">
+            <Span th:text="${reference.referenceFirstName}"></Span> <Span th:text="${reference.referenceLastName}"></Span><br />
+            <Span th:text="${reference.referenceJobPosition}"></Span><br/>
+            <Span th:text="${reference.referenceCompany}"></Span><br/>
+            <Span th:text="${reference.referenceAddress}"></Span><br/>
+            <Span th:text="${reference.referenceCity}"></Span><br/>
+            <Span th:text="${reference.referencePhone}"></Span><br/>
+            <Span th:text="${reference.referenceEmail}"></Span><br/>
+        </div>
+    </div>
+</div>
+<div th:replace="base :: footer"></div>
+</body>
+</html>

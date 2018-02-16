@@ -32,6 +32,9 @@ public class HomeController {
     CoverRepository coverRepository;
 
     @Autowired
+    ReferenceRepository referenceRepository;
+
+    @Autowired
     CloudinaryConfig cloudc;
 
     @RequestMapping("/")
@@ -129,7 +132,7 @@ public class HomeController {
     }
     @PostMapping("/addsummary")
     public String addSummaryForm(@Valid @ModelAttribute("cover") Cover cover, BindingResult result,
-                               RedirectAttributes redirectAttributes){
+                                 RedirectAttributes redirectAttributes){
         if(result.hasErrors()){
             return "summary";
         }
@@ -138,7 +141,23 @@ public class HomeController {
             return "redirect:/";
         }
     }
-
+    //Add reference
+    @GetMapping("/reference")
+    public String addReference(Model model){
+        model.addAttribute("reference",new Reference());
+        return "reference";
+    }
+    @PostMapping("/addreference")
+    public String addReferenceForm(@Valid @ModelAttribute("reference") Reference reference, BindingResult result,
+                                 RedirectAttributes redirectAttributes){
+        if(result.hasErrors()){
+            return "reference";
+        }
+        else{
+            referenceRepository.save(reference);
+            return "redirect:/";
+        }
+    }
     @RequestMapping("/completedresume")
     public String showCompleteResume(Model model){
         model.addAttribute("users",userRepository.findAll());
@@ -148,52 +167,10 @@ public class HomeController {
         model.addAttribute("covers",coverRepository.findAll());
         return "completedresume";
     }
-//    @RequestMapping("/summary")
-//    public String summary(Model model){
-//        //model.addAttribute("rooms",roomRepository.findAllByListTypeContainingIgnoreCase("Public"));
-//        return "summary";
-//    }
-//
-//    @RequestMapping("/contactinfo")
-//    public String contactInfo(Model model){
-//        //model.addAttribute("rooms",roomRepository.findAllByListTypeContainingIgnoreCase("Public"));
-//        return "contactinfo";
-//    }
-//
-//    @RequestMapping("/education")
-//    public String education(Model model){
-//        model.addAttribute("education",educationRepository.findAll());
-//        return "education";
-//    }
-//
-//    @RequestMapping("/skill")
-//    public String skill(Model model){
-//        //model.addAttribute("rooms",roomRepository.findAllByListTypeContainingIgnoreCase("Public"));
-//        return "skill";
-//    }
-//
-//    @RequestMapping("/experience")
-//    public String experience(Model model){
-//        //model.addAttribute("rooms",roomRepository.findAllByListTypeContainingIgnoreCase("Public"));
-//        return "experience";
-//    }
-//
-//    @RequestMapping("/references")
-//    public String references(Model model){
-//        //model.addAttribute("rooms",roomRepository.findAllByListTypeContainingIgnoreCase("Public"));
-//        return "references";
-//    }
-//
-//    @RequestMapping("/completedresume")
-//    public String completedresume(Model model){
-//        //model.addAttribute("rooms",roomRepository.findAllByListTypeContainingIgnoreCase("Public"));
-//        return "completedresume";
-//    }
-//
-//    @RequestMapping("/coverletter")
-//    public String coverletter(Model model){
-//        //model.addAttribute("rooms",roomRepository.findAllByListTypeContainingIgnoreCase("Public"));
-//        return "coverletter";
-//    }
+    @RequestMapping("/showreference")
+    public String listRooms(Model model){
+        model.addAttribute("references",referenceRepository.findAll());
+        return"showreference";
+    }
 
 }

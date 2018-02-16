@@ -24,7 +24,7 @@
         <label id="labelType">Skill Type</label>
         <input type="text" class="form-control" id="textSkillType" th:field="*{type}" placeholder="Enter skill type"/>
         <span th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></span>
-    </div>
+    </div><br/>
     <div class="col-3">
         <label id="labelSkillLevel">Skill Level</label>
         <Select th:field="*{skillLevel}">
