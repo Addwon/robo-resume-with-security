@@ -28,10 +28,6 @@ public class User {
 
     private byte[] image;
 
-    private String coverLetter;
-
-    private String summary;
-
     public long getId() {
         return id;
     }
@@ -72,19 +68,5 @@ public class User {
         this.image = image;
     }
 
-    public String getCoverLetter() {
-        return coverLetter;
-    }
 
-    public void setCoverLetter(String coverLetter) {
-        this.coverLetter = coverLetter;
-    }
-
-    public String getSummary() {
-        return summary;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
 }

@@ -2,13 +2,40 @@
 <html lang="en" xmlns:th="www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
-    <title>Add</title>
+    <title>Summary</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
 
 </head>
 <body>
 <div th:replace="base :: navlinks"></div>
-<h2>Add Resume</h2>
+
+
+<form action="#"
+      th:action="@{/addsummary}"
+      th:object="${cover}"
+      method="post">
+    <div class="col-3">
+        <input type="hidden" th:field="*{id}" />
+    </div>
+
+    <div class="col-6">
+        <label id="labelSummary">Add Summary for your resume</label><br/>
+        <textarea class="col-10" id="textSummary" th:field="*{summary}" rows="3" placeholder="Enter summary"></textarea>
+        <span th:if="${#fields.hasErrors('summary')}" th:errors="*{summary}"></span>
+    </div>
+    <br/>
+
+    <div class="col-6">
+        <label id="labelCover">Add cover letter</label><br/>
+        <textarea class="col-10" id="textCover" th:field="*{coverLetter}" rows="12" placeholder="Enter cover letter"></textarea>
+        <span th:if="${#fields.hasErrors('coverLetter')}" th:errors="*{coverLetter}"></span>
+    </div>
+    <br/>
+    <div class="col-3">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+
+</form>
 <div th:replace="base :: footer"></div>
 </body>
 </html>

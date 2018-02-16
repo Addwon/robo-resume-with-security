@@ -26,9 +26,12 @@ public class HomeController {
 
     @Autowired
     SkillRepository skillRepository;
+
+    @Autowired
+    CoverRepository coverRepository;
+
     @RequestMapping("/")
     public String showIndex(Model model){
-        //model.addAttribute("rooms",roomRepository.findAllByListTypeContainingIgnoreCase("Public"));
         return "index";
     }
     //Add contact info
@@ -100,6 +103,34 @@ public class HomeController {
             skillRepository.save(skill);
             return "redirect:/";
         }
+    }
+
+    //Add summary
+    @GetMapping("/summary")
+    public String addSummary(Model model){
+        model.addAttribute("cover",new Cover());
+        return "summary";
+    }
+    @PostMapping("/addsummary")
+    public String addSummaryForm(@Valid @ModelAttribute("cover") Cover cover, BindingResult result,
+                               RedirectAttributes redirectAttributes){
+        if(result.hasErrors()){
+            return "summary";
+        }
+        else{
+            coverRepository.save(cover);
+            return "redirect:/";
+        }
+    }
+
+    @RequestMapping("/completedresume")
+    public String showCompleteResume(Model model){
+        model.addAttribute("users",userRepository.findAll());
+        model.addAttribute("educations",educationRepository.findAll());
+        model.addAttribute("experiences",experienceRepository.findAll());
+        model.addAttribute("skills",skillRepository.findAll());
+        model.addAttribute("covers",coverRepository.findAll());
+        return "completedresume";
     }
 //    @RequestMapping("/summary")
 //    public String summary(Model model){

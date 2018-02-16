@@ -8,7 +8,74 @@
 </head>
 <body>
 <div th:replace="base :: navlinks"></div>
-<h2>Show Resume</h2>
+<div class="container">
+    <h2>Resume</h2>
+    <div class="card">
+        <div class="card-body">
+            <div th:each="cover : ${covers}">
+                <Span th:text="${cover.summary}"></Span><br />
+            </div>
+            <div th:each="user : ${users}">
+            <!--<div th:if="${room.imageUrl}!=null">-->
+                <!--<img class="img-rounded" th:src="${room.imageUrl}" alt="Room" style="width:30%"/>-->
+                <!--<hr/>-->
+            <!--</div>-->
+                <Span th:text="${user.firstName}"></Span>
+                <Span th:text="${user.lastName}"></Span><br />
+                <Span th:text="${user.email}"></Span><br />
+            </div>
+
+            <b>Education:</b><br />
+            <div th:each="education : ${educations}">
+                <Span th:text="${education.major}"></Span>,<Span th:text="${education.school}"></Span>,<Span th:text="${education.gradYear}"></Span><br />
+            </div>
+
+            <b>Experience:</b><br />
+            <div th:each="experience : ${experiences}">
+                <Span th:text="${experience.jobPosition}"></Span><br />
+                <Span th:text="${experience.company}"></Span>,<Span th:text="${experience.duration}"></Span><br />
+                Duties: <Span th:text="${experience.duties}"></Span><br />
+            </div>
+            <b>Skills:</b><br />
+            <div th:each="skill : ${skills}">
+                <Span th:text="${skill.type}"></Span>,<Span th:text="${skill.skillLevel}"></Span><br />
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--<div class="container">-->
+    <!--<h2>Complete Resume</h2>-->
+        <!--<table class="table" title="Resume" >-->
+
+            <!--<tr th:each="user : ${users}">-->
+                <!--<td th:text="${user.firstName}"></td>-->
+                <!--<td th:text="${user.lastName}"></td>-->
+                <!--<td th:text="${user.email}"></td>-->
+            <!--</tr>-->
+
+            <!--<tr th:each="education : ${educations}">-->
+                <!--<td><b>Education</b></td>-->
+                <!--<td th:text="${education.gradYear}"></td>-->
+                <!--<td th:text="${education.major}"></td>-->
+                <!--<td th:text="${education.school}"></td>-->
+            <!--</tr>-->
+
+            <!--<tr th:each="experience : ${experiences}">-->
+                <!--<td><b>Experience</b></td>-->
+                <!--<td th:text="${experience.jobPosition}"></td>-->
+                <!--<td th:text="${experience.company}"></td>-->
+                <!--<td th:text="${experience.duration}"></td>-->
+                <!--<td th:text="${experience.duties}"></td>-->
+            <!--</tr>-->
+
+            <!--<tr th:each="skill : ${skills}">-->
+                <!--<td><b>Skills</b></td>-->
+                <!--<td th:text="${skill.type}"></td>-->
+                <!--<td th:text="${skill.skillLevel}"></td>-->
+            <!--</tr>-->
+        <!--</table>-->
+<!--</div>-->
 <div th:replace="base :: footer"></div>
 </body>
 </html>
