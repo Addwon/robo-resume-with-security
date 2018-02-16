@@ -28,6 +28,16 @@ public class User {
 
     private byte[] image;
 
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    private String imgUrl;
+
     public long getId() {
         return id;
     }

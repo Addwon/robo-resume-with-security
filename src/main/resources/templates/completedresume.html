@@ -12,30 +12,32 @@
     <h2>Resume</h2>
     <div class="card">
         <div class="card-body">
+
             <div th:each="cover : ${covers}">
                 <Span th:text="${cover.summary}"></Span><br />
             </div>
-            <div th:each="user : ${users}">
-            <!--<div th:if="${room.imageUrl}!=null">-->
-                <!--<img class="img-rounded" th:src="${room.imageUrl}" alt="Room" style="width:30%"/>-->
-                <!--<hr/>-->
-            <!--</div>-->
-                <Span th:text="${user.firstName}"></Span>
-                <Span th:text="${user.lastName}"></Span><br />
-                <Span th:text="${user.email}"></Span><br />
-            </div>
 
+            <div th:each="user : ${users}">
+                <!--<div th:if="${user.image}!=null">-->
+                    <img class="img-rounded" th:src="${user.imgUrl}" alt="User image" style="width:10%"/><br/>
+                    <!--<hr/>-->
+                <!--</div><br/>-->
+                    <Span th:text="${user.firstName}"></Span>
+                    <Span th:text="${user.lastName}"></Span><br />
+                    <Span th:text="${user.email}"></Span><br />
+             </div><br/>
             <b>Education:</b><br />
             <div th:each="education : ${educations}">
                 <Span th:text="${education.major}"></Span>,<Span th:text="${education.school}"></Span>,<Span th:text="${education.gradYear}"></Span><br />
-            </div>
+            </div><br/>
 
             <b>Experience:</b><br />
             <div th:each="experience : ${experiences}">
                 <Span th:text="${experience.jobPosition}"></Span><br />
                 <Span th:text="${experience.company}"></Span>,<Span th:text="${experience.duration}"></Span><br />
                 Duties: <Span th:text="${experience.duties}"></Span><br />
-            </div>
+            </div><br/>
+
             <b>Skills:</b><br />
             <div th:each="skill : ${skills}">
                 <Span th:text="${skill.type}"></Span>,<Span th:text="${skill.skillLevel}"></Span><br />

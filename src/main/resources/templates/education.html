@@ -34,7 +34,7 @@
         <label id="labelGradYear">Graduation Year</label>
         <input type="number" class="form-control" id="numberGradYear" th:field="*{gradYear}" placeholder="Enter Graduation Year"/>
         <span th:if="${#fields.hasErrors('gradYear')}" th:errors="*{gradYear}"></span>
-    </div>
+    </div><br/>
 
     <div class="col-3">
         <button type="submit" class="btn btn-primary">Submit</button>

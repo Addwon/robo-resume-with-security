@@ -1,5 +1,6 @@
 package com.week4challange.roboresumewithsecurity;
 
+import com.cloudinary.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +31,9 @@ public class HomeController {
     @Autowired
     CoverRepository coverRepository;
 
+    @Autowired
+    CloudinaryConfig cloudc;
+
     @RequestMapping("/")
     public String showIndex(Model model){
         return "index";
@@ -43,6 +47,18 @@ public class HomeController {
     @PostMapping("/addcontactinfo")
     public String addContactInfoForm(@Valid @ModelAttribute("user") User user, @RequestParam("file")MultipartFile file, BindingResult result,
                                  RedirectAttributes redirectAttributes){
+        if(file.isEmpty()){
+            return "contactinfo";
+        }
+        try{
+            Map uploadResult=cloudc.upload(file.getBytes(),
+                    ObjectUtils.asMap("resourcetype","auto"));
+            user.setImgUrl(uploadResult.get("url").toString());
+
+        }catch (IOException e){
+            e.printStackTrace();
+            return "contactinfo";
+        }
         if(result.hasErrors()){
             return "contactinfo";
         }
