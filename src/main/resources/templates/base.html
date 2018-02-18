@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="www.thymeleaf.org">
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8" />
     <title>Base</title>
@@ -34,11 +34,17 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/experience">Experience</a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="/reference">Add Reference</a>
+                    <div sec:authorize="hasAuthority('USER')">
+                        <a class="nav-link" href="/reference" >Add Reference</a>
+                    </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/showreference">Show Reference</a>
+                    <div sec:authorize="hasRole('ROLE_USER')">
+                        <a class="nav-link" href="/showreference" >Show Reference</a>
+                    <!--<a class="nav-link" href="/showreference" th:if="${#authorization.expression('hasRole(''ROLE_USER'')')}">Show Reference</a>-->
+                    </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="/" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
