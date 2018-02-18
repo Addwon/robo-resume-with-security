@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <title>Education</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
-
+    <!--<link href="../static/css/stylesheet.css" rel="stylesheet"/>-->
 </head>
 <body>
 <div th:replace="base :: navlinks"></div>
 
-
+<div class="container" >
 <form action="#"
       th:action="@{/addeducation}"
       th:object="${education}"
@@ -18,7 +18,7 @@
         <input type="hidden" th:field="*{id}" />
     </div>
     <div class="col-3">
-        <label id="labelEducation">Add Educational Achievements</label>
+        <label id="labelEducation"><h5>Add Educational Achievements</h5></label>
     </div>
     <div class="col-3">
         <label id="labelMajor">Major</label>
@@ -41,8 +41,8 @@
     </div>
 
 </form>
-
-<div th:replace="base :: footer"></div>
+</div>
+<!--<div th:replace="base :: footer"></div>-->
 <script
         src="http://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

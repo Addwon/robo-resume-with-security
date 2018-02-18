@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <title>Show</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
-
+    <!--<link href="../static/css/stylesheet.css" rel="stylesheet"/>-->
 </head>
 <body>
 <div th:replace="base :: navlinks"></div>
 <div class="container">
-    <h2>Resume</h2>
+    <h5>Resume</h5>
     <div class="card">
         <div class="card-body">
             <div th:each="user : ${users}">
@@ -46,39 +46,7 @@
         </div>
     </div>
 </div>
-<!--<div class="container">-->
-    <!--<h2>Complete Resume</h2>-->
-        <!--<table class="table" title="Resume" >-->
 
-            <!--<tr th:each="user : ${users}">-->
-                <!--<td th:text="${user.firstName}"></td>-->
-                <!--<td th:text="${user.lastName}"></td>-->
-                <!--<td th:text="${user.email}"></td>-->
-            <!--</tr>-->
-
-            <!--<tr th:each="education : ${educations}">-->
-                <!--<td><b>Education</b></td>-->
-                <!--<td th:text="${education.gradYear}"></td>-->
-                <!--<td th:text="${education.major}"></td>-->
-                <!--<td th:text="${education.school}"></td>-->
-            <!--</tr>-->
-
-            <!--<tr th:each="experience : ${experiences}">-->
-                <!--<td><b>Experience</b></td>-->
-                <!--<td th:text="${experience.jobPosition}"></td>-->
-                <!--<td th:text="${experience.company}"></td>-->
-                <!--<td th:text="${experience.duration}"></td>-->
-                <!--<td th:text="${experience.duties}"></td>-->
-            <!--</tr>-->
-
-            <!--<tr th:each="skill : ${skills}">-->
-                <!--<td><b>Skills</b></td>-->
-                <!--<td th:text="${skill.type}"></td>-->
-                <!--<td th:text="${skill.skillLevel}"></td>-->
-            <!--</tr>-->
-        <!--</table>-->
-<!--</div>-->
-<div th:replace="base :: footer"></div>
 <script
         src="http://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

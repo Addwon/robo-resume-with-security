@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <title>Contact Info</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
-
+    <!--<link href="../static/css/stylesheet.css" rel="stylesheet"/>-->
 </head>
 <body>
 <div th:replace="base :: navlinks"></div>
 
-
+<div class="container" >
 <form action="#"
       th:action="@{/addcontactinfo}"
       th:object="${user}"
@@ -19,7 +19,7 @@
         <input type="hidden" th:field="*{id}" />
     </div>
     <div class="col-3">
-        <label id="labelContactInfo">Add Contact Information</label>
+        <label id="labelContactInfo"><h5>Add Contact Information</h5></label>
     </div>
     <div class="col-3">
         <label id="labelFirstName">First Name</label>
@@ -57,7 +57,8 @@
       <input type="file" class="form-control-file" id="imageBook" th:field="*{image}"/>
       <span th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></span><br />-->
 </form>
-<div th:replace="base :: footer"></div>
+<!--<div th:replace="base :: footer"></div>-->
+</div>
 <script
         src="http://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

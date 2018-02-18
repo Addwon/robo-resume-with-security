@@ -4,12 +4,11 @@
     <meta charset="UTF-8" />
     <title>Summary</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
-
+    <!--<link href="../static/css/stylesheet.css" rel="stylesheet"/>-->
 </head>
 <body>
 <div th:replace="base :: navlinks"></div>
-
-
+<div class="container">
 <form action="#"
       th:action="@{/addsummary}"
       th:object="${cover}"
@@ -18,7 +17,7 @@
         <input type="hidden" th:field="*{id}" />
     </div>
     <div class="col-6">
-        <label id="labelSummary">Add Summary for your resume</label><br/>
+        <label id="labelSummary"><h5>Add Summary for your resume</h5></label><br/>
         <textarea class="col-10" id="textSummary" th:field="*{summary}" rows="3" placeholder="Enter summary"></textarea>
         <span th:if="${#fields.hasErrors('summary')}" th:errors="*{summary}"></span>
     </div>
@@ -35,7 +34,8 @@
     </div>
 
 </form>
-<div th:replace="base :: footer"></div>
+</div>
+<!--<div th:replace="base :: footer"></div>-->
 <script
         src="http://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

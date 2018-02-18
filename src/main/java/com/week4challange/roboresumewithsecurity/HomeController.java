@@ -205,7 +205,7 @@ public class HomeController {
     }
     @RequestMapping("/showcoverletter")
     public String ShowCoverLetter(Model model){
-        model.addAttribute("references",referenceRepository.findAll());
+        model.addAttribute("covers",coverRepository.findAll());
         return"showcoverletter";
     }
     @RequestMapping("/showreference")
