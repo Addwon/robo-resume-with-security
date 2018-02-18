@@ -232,4 +232,25 @@ public class HomeController {
         model.addAttribute("references", referenceRepository.findAll());
         return "showreference";
     }
+//----------------------- Edit ---------------------------------
+    @RequestMapping("/editcontact/{id}")
+    public String editContact(@PathVariable("id") long id, Model model){
+        model.addAttribute("user", userRepository.findOne(id));
+        return "contactinfo";
+    }
+    @RequestMapping("/editeducation/{id}")
+    public String editEducation(@PathVariable("id") long id, Model model){
+        model.addAttribute("education", educationRepository.findOne(id));
+        return "education";
+    }
+    @RequestMapping("/editexperience/{id}")
+    public String editExperience(@PathVariable("id") long id, Model model){
+        model.addAttribute("experience", experienceRepository.findOne(id));
+        return "experience";
+    }
+    @RequestMapping("/editskill/{id}")
+    public String editSkill(@PathVariable("id") long id, Model model){
+        model.addAttribute("skill", skillRepository.findOne(id));
+        return "skill";
+    }
 }
