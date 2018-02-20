@@ -40,4 +40,14 @@ public class UserService {
         user.setEnabled(true);
         userRepository.save(user);
     }
+    public void saveApplicant(User user){
+        user.setRoles(Arrays.asList(roleRepository.findByRole("APPLICANT")));
+        user.setEnabled(true);
+        userRepository.save(user);
+    }
+    public void saveEmployer(User user){
+        user.setRoles(Arrays.asList(roleRepository.findByRole("EMPLOYER")));
+        user.setEnabled(true);
+        userRepository.save(user);
+    }
 }
