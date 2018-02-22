@@ -22,11 +22,11 @@
         </thead>
         <tbody>
         <tr th:each="applicant : ${userdata}">
-            <td th:text="${job.firstName}"></td>
+            <td th:text="${applicant.firstName}"></td>
 
-            <td th:text="${job.lastName}"></td>
+            <td th:text="${applicant.lastName}"></td>
 
-            <td th:text="${job.email}"></td>
+            <td th:text="${applicant.email}"></td>
 
             <td><a th:href="@{/showresume/{id} (id=${applicant.id})}">Resume</a></td>
         </tr>

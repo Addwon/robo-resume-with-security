@@ -21,6 +21,18 @@ public class DataLoader implements CommandLineRunner {
     @Autowired
     OrganizationRepository organizationRepository;
 
+    @Autowired
+    UserDataRepository userDataRepository;
+
+    @Autowired
+    EducationRepository educationRepository;
+
+    @Autowired
+    ExperienceRepository experienceRepository;
+
+    @Autowired
+    SkillRepository skillRepository;
+
     @Override
     public void run(String... strings) throws Exception{
        System.out.println("Loading data . . .");
@@ -51,6 +63,30 @@ public class DataLoader implements CommandLineRunner {
         user=new User("recruiter@recruiter.com","recruiter","Recruiter","User",true,"recruiter","");
         user.setRoles(Arrays.asList(recruiterRole));
         userRepository.save(user);
+
+        UserData user1=new UserData();
+        user1.setFirstName("John");
+        user1.setLastName("Jingleheimer-Schmidt");
+        user1.setEmail("jjjschmidt@gmail.com");
+        userDataRepository.save(user1);
+
+        Education education=new Education();
+        education.setMajor("BS in Psychology");
+        education.setSchool("UMaryland");
+        education.setGradYear(2002);
+        educationRepository.save(education);
+
+        Experience experience=new Experience();
+        experience.setJobPosition("Software Developer II");
+        experience.setCompany("Amtrak");
+        experience.setDuration("2015-Present");
+        experience.setDuties("programming and database dev't");
+        experienceRepository.save(experience);
+
+        Skill skill=new Skill();
+        skill.setType("PHP");
+        skill.setSkillLevel("Highly skilled");
+        skillRepository.save(skill);
 
 
         Organization orgn1=new Organization();
