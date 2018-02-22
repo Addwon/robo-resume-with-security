@@ -1,11 +1,9 @@
 package com.week4challange.roboresumewithsecurity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 public class Education {
@@ -24,6 +22,9 @@ public class Education {
 
     @NotNull
     private int gradYear;
+
+    @ManyToMany(mappedBy = "usredu")
+    private List<User> educations;
 
     public long getId() {
         return id;
@@ -55,5 +56,13 @@ public class Education {
 
     public void setGradYear(int gradYear) {
         this.gradYear = gradYear;
+    }
+
+    public List<User> getEducations() {
+        return educations;
+    }
+
+    public void setEducations(List<User> educations) {
+        this.educations = educations;
     }
 }

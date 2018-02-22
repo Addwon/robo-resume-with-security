@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface JobRepository extends CrudRepository<Job,Long> {
 
-    Iterable<Job> findAllByRequiredSkillContainingIgnoreCase(String availability);
+    Iterable<Job> findAllByRequiredSkillContainingIgnoreCase(String requiredskill);
 
 }

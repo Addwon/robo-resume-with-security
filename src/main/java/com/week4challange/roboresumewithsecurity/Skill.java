@@ -1,11 +1,9 @@
 package com.week4challange.roboresumewithsecurity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 public class Skill {
@@ -20,6 +18,10 @@ public class Skill {
     @NotNull
     @Size(min=2)
     String skillLevel;
+
+//    @ManyToMany(mappedBy = "usrskill", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "usrskill")
+    private List<User> skills;
 
     public long getId() {
         return id;
@@ -43,5 +45,13 @@ public class Skill {
 
     public void setSkillLevel(String skillLevel) {
         this.skillLevel = skillLevel;
+    }
+
+    public List<User> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<User> skills) {
+        this.skills = skills;
     }
 }

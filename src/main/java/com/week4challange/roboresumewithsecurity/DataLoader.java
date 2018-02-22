@@ -42,13 +42,13 @@ public class DataLoader implements CommandLineRunner {
         Role adminRole=roleRepository.findByRole("ADMIN");
         //Role userRole=roleRepository.findByRole("USER");
 
-        User user=new User("admin@admin.com","beastmaster","Dave","Wolf",true,"DaveWolf","Employer");
+        User user=new User("admin@admin.com","beastmaster","Dave","Wolf",true,"DaveWolf","");
         user.setRoles(Arrays.asList(adminRole));
         userRepository.save(user);
 
         roleRepository.save(new Role("APPLICANT"));
         Role applicantRole=roleRepository.findByRole("APPLICANT");
-        user=new User("applicant@applicant.com","applicant","Applicant","User",true,"applicant","");
+        user=new User("jjjschmidt@gmail.com","applicant","John","Jingleheimer-Schmidt",true,"applicant","");
         user.setRoles(Arrays.asList(applicantRole));
         userRepository.save(user);
 
@@ -64,11 +64,11 @@ public class DataLoader implements CommandLineRunner {
         user.setRoles(Arrays.asList(recruiterRole));
         userRepository.save(user);
 
-        UserData user1=new UserData();
-        user1.setFirstName("John");
-        user1.setLastName("Jingleheimer-Schmidt");
-        user1.setEmail("jjjschmidt@gmail.com");
-        userDataRepository.save(user1);
+//        UserData user1=new UserData();
+//        user1.setFirstName("John");
+//        user1.setLastName("Jingleheimer-Schmidt");
+//        user1.setEmail("jjjschmidt@gmail.com");
+//        userDataRepository.save(user1);
 
         Education education=new Education();
         education.setMajor("BS in Psychology");

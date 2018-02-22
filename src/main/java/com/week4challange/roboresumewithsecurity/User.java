@@ -2,6 +2,7 @@ package com.week4challange.roboresumewithsecurity;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class User {
@@ -27,24 +28,39 @@ public class User {
     @Column(name="username")
     private String username;
 
-    @Column(name="usertype")
-    private String usertype;
+    @Column(name="image")
+    private String imgUrl;
 
-
+//    private byte[] image;
 
     @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(joinColumns=@JoinColumn(name = "user_id"),
     inverseJoinColumns=@JoinColumn(name="role_id"))
     private Collection<Role> roles;
 
-    public User(String email, String password, String firstName, String lastName, boolean enabled, String username,String usertype) {
+    @ManyToMany
+    @JoinTable(joinColumns=@JoinColumn(name = "user_id"),
+            inverseJoinColumns=@JoinColumn(name="education_id"))
+    private List<Education> usredu;
+
+    @ManyToMany
+    @JoinTable(joinColumns=@JoinColumn(name = "user_id"),
+            inverseJoinColumns=@JoinColumn(name="experience_id"))
+    private List<Experience> usrexp;
+
+    @ManyToMany
+    @JoinTable(joinColumns=@JoinColumn(name = "user_id"),
+            inverseJoinColumns=@JoinColumn(name="skill_id"))
+    private List<Skill> usrskill;
+
+    public User(String email, String password, String firstName, String lastName, boolean enabled, String username,String imgUrl) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.enabled = enabled;
         this.username = username;
-        this.usertype=usertype;
+        this.imgUrl=imgUrl;
     }
 
     public User() {
@@ -114,12 +130,20 @@ public class User {
         this.roles = roles;
     }
 
-    public String getUsertype() {
-        return usertype;
+    public String getImgUrl() {
+        return imgUrl;
     }
 
-    public void setUsertype(String usertype) {
-        this.usertype = usertype;
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
+
+//    public byte[] getImage() {
+//        return image;
+//    }
+//
+//    public void setImage(byte[] image) {
+//        this.image = image;
+//    }
 }
 

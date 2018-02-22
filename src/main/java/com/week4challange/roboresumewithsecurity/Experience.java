@@ -1,11 +1,9 @@
 package com.week4challange.roboresumewithsecurity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 public class Experience {
@@ -28,6 +26,9 @@ public class Experience {
     @NotNull
     @Size(min=10)
     String duties;
+
+    @ManyToMany(mappedBy = "usrexp")
+    private List<User> experiences;
 
     public long getId() {
         return id;
@@ -67,5 +68,13 @@ public class Experience {
 
     public void setDuties(String duties) {
         this.duties = duties;
+    }
+
+    public List<User> getExperiences() {
+        return experiences;
+    }
+
+    public void setExperiences(List<User> experiences) {
+        this.experiences = experiences;
     }
 }

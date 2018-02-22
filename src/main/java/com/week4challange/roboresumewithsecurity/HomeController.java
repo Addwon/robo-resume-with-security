@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -64,36 +65,69 @@ public class HomeController {
         return "login";
     }
 
-    //Add contact info
-    @GetMapping("/contactinfo")
-    public String addContactInfo(Model model){
-        model.addAttribute("user",new UserData());
-        return "contactinfo";
+    //For user registration
+    @RequestMapping(value="/register",method=RequestMethod.GET)
+    public String showRegistrationPage(Model model){
+        model.addAttribute("user",new User());
+        return "registration";
     }
-    @PostMapping("/addcontactinfo")
-    public String addContactInfoForm(@Valid @ModelAttribute("user") UserData user, @RequestParam("file")MultipartFile file, BindingResult result,
-                                 RedirectAttributes redirectAttributes){
-        if(file.isEmpty()){
-            return "contactinfo";
-        }
-        try{
-            Map uploadResult=cloudc.upload(file.getBytes(),
-                    ObjectUtils.asMap("resourcetype","auto"));
-            user.setImgUrl(uploadResult.get("url").toString());
 
-        }catch (IOException e){
-            e.printStackTrace();
-            return "contactinfo";
-        }
+
+    @RequestMapping(value="/register",method= RequestMethod.POST)
+    public String processRegistrationPage(@Valid @ModelAttribute("User") User user, BindingResult result, Model model){
+//        MultipartFile f = request.getFile("file");
+//        if(f.isEmpty()){
+//            return "registration";
+//        }
+//        try{
+//            Map uploadResult=cloudc.upload(f.getBytes(),
+//                    ObjectUtils.asMap("resourcetype","auto"));
+//            user.setImgUrl(uploadResult.get("url").toString());
+//
+//        }catch (IOException e){
+//            e.printStackTrace();
+//            return "registration";
+//        }
+////        model.addAttribute("user",user);
         if(result.hasErrors()){
-            return "contactinfo";
+            return "registration";
+        }else{
+            userRepository.save(user);
+//            model.addAttribute("message","User Account Successfully Created");
         }
-        else{
-            userdataRepository.save(user);
-            return "redirect:/";
-        }
-
+        return "redirect:/";
     }
+
+//    //Add contact info
+//    @GetMapping("/contactinfo")
+//    public String addContactInfo(Model model){
+//        model.addAttribute("user",new UserData());
+//        return "contactinfo";
+//    }
+//    @PostMapping("/addcontactinfo")
+//    public String addContactInfoForm(@Valid @ModelAttribute("user") UserData user, @RequestParam("file")MultipartFile file, BindingResult result,
+//                                 RedirectAttributes redirectAttributes){
+//        if(file.isEmpty()){
+//            return "contactinfo";
+//        }
+//        try{
+//            Map uploadResult=cloudc.upload(file.getBytes(),
+//                    ObjectUtils.asMap("resourcetype","auto"));
+//            user.setImgUrl(uploadResult.get("url").toString());
+//
+//        }catch (IOException e){
+//            e.printStackTrace();
+//            return "contactinfo";
+//        }
+//        if(result.hasErrors()){
+//            return "contactinfo";
+//        }
+//        else{
+//            userdataRepository.save(user);
+//            return "redirect:/";
+//        }
+//
+//    }
 
     //Add educational achievements
     @GetMapping("/education")
@@ -182,25 +216,7 @@ public class HomeController {
         }
     }
 
-    //For user registration
-    @RequestMapping(value="/register",method=RequestMethod.GET)
-    public String showRegistrationPage(Model model){
-        model.addAttribute("user",new User());
-        return "registration";
-    }
 
-
-    @RequestMapping(value="/register",method= RequestMethod.POST)
-    public String processRegistrationPage(@Valid @ModelAttribute("User") User user, BindingResult result, Model model){
-        model.addAttribute("user",user);
-        if(result.hasErrors()){
-            return "registration";
-        }else{
-            userService.saveUser(user);
-            model.addAttribute("message","User Account Successfully Created");
-        }
-        return "redirect:/";
-    }
 //Post jobs
     @GetMapping("/postjob")
     public String postJob(Model model){
@@ -221,7 +237,8 @@ public class HomeController {
 
     @RequestMapping("/completedresume")
     public String showCompleteResume(Model model){
-        model.addAttribute("users",userdataRepository.findAll());
+        //model.addAttribute("users",userdataRepository.findAll());
+        model.addAttribute("users",userRepository.findAll());
         model.addAttribute("educations",educationRepository.findAll());
         model.addAttribute("experiences",experienceRepository.findAll());
         model.addAttribute("skills",skillRepository.findAll());
@@ -259,9 +276,10 @@ public class HomeController {
     }
 
     @RequestMapping("/joblist")
-    public String ShowJobList(Model model){
-        model.addAttribute("job",jobRepository.findAll());
-        model.addAttribute("organization",organizationRepository.findAll());
+    public String ShowJobList(Model model,Job job,Skill skill){
+      //  model.addAttribute("job",jobRepository.findAllByRequiredSkillContainingIgnoreCase())
+       model.addAttribute("job",jobRepository.findAll());
+      model.addAttribute("organization",organizationRepository.findAll());
         return"joblist";
     }
     //Job search
