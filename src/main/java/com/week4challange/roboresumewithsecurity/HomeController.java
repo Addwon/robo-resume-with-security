@@ -2,6 +2,8 @@ package com.week4challange.roboresumewithsecurity;
 
 import com.cloudinary.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -276,8 +278,18 @@ public class HomeController {
     }
 
     @RequestMapping("/joblist")
-    public String ShowJobList(Model model,Job job,Skill skill){
+    public String ShowJobList(Model model,User user,Job job,Skill skill){
+        /*
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println(auth.getAuthorities());
+        System.out.println(auth.getCredentials());
+        System.out.println(auth.getPrincipal());
+        System.out.println(auth.getDetails());
+        System.out.println(auth.isAuthenticated());
+        System.out.println(auth.getName());
+        */
       //  model.addAttribute("job",jobRepository.findAllByRequiredSkillContainingIgnoreCase())
+//        model.addAttribute("job",jobRepository.)
        model.addAttribute("job",jobRepository.findAll());
       model.addAttribute("organization",organizationRepository.findAll());
         return"joblist";
