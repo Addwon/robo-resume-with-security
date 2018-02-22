@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+
 import javax.validation.Valid;
 import java.io.IOException;
 import java.security.Principal;
@@ -33,6 +35,12 @@ public class HomeController {
 
     @Autowired
     ReferenceRepository referenceRepository;
+
+    @Autowired
+    JobRepository jobRepository;
+
+    @Autowired
+    OrganizationRepository organizationRepository;
 
     @Autowired
     CloudinaryConfig cloudc;
@@ -231,6 +239,29 @@ public class HomeController {
 //        }
         model.addAttribute("references", referenceRepository.findAll());
         return "showreference";
+    }
+
+    @RequestMapping("/joblist")
+    public String ShowJobList(Model model){
+        model.addAttribute("job",jobRepository.findAll());
+        model.addAttribute("organization",organizationRepository.findAll());
+        return"joblist";
+    }
+    //Job search
+    @GetMapping("/search")
+    public String getSearch()
+    {
+        return "joblist";
+    }
+
+    @PostMapping("/search")
+    public String showSearchResults(HttpServletRequest request, Model model)
+    {
+        //Get the search string from the result form
+        String searchString = request.getParameter("search");
+        model.addAttribute("search",searchString);
+        model.addAttribute("jobs",jobRepository.findAllByRequiredSkillContainingIgnoreCase(searchString));
+        return "jobsearchresult";
     }
 //----------------------- Edit ---------------------------------
     @RequestMapping("/editcontact/{id}")

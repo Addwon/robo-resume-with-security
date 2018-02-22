@@ -30,6 +30,8 @@ public class User {
     @Column(name="usertype")
     private String usertype;
 
+
+
     @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(joinColumns=@JoinColumn(name = "user_id"),
     inverseJoinColumns=@JoinColumn(name="role_id"))
