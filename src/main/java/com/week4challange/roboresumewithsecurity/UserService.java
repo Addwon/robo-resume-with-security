@@ -50,4 +50,9 @@ public class UserService {
         user.setEnabled(true);
         userRepository.save(user);
     }
+    public void saveRecruiter(User user){
+        user.setRoles(Arrays.asList(roleRepository.findByRole("RECRUITER")));
+        user.setEnabled(true);
+        userRepository.save(user);
+    }
 }
