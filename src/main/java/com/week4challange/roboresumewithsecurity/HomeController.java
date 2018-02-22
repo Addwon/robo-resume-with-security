@@ -201,6 +201,23 @@ public class HomeController {
         }
         return "redirect:/";
     }
+//Post jobs
+    @GetMapping("/postjob")
+    public String postJob(Model model){
+        model.addAttribute("job",new Job());
+        return "postjob";
+    }
+    @PostMapping("/postjob")
+    public String postJobForm(@Valid @ModelAttribute("job") Job job, BindingResult result,
+                                   RedirectAttributes redirectAttributes){
+        if(result.hasErrors()){
+            return "postjob";
+        }
+        else{
+            jobRepository.save(job);
+            return "redirect:/";
+        }
+    }
 
     @RequestMapping("/completedresume")
     public String showCompleteResume(Model model){
