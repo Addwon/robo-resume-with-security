@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.servlet.http.HttpServletRequest;
 
 import javax.validation.Valid;
@@ -252,10 +255,21 @@ public class HomeController {
         return "showreference";
     }
 
-    @RequestMapping("/joblist")
-   // public String ShowJobList(@RequestParam("jobs") String jobID, @PathVariable("skillID") long skillID,  @ModelAttribute("job") Job j, Model model){
+    @Autowired
+    private EntityManagerFactory entityManagerFactory;
 
+
+   // public String ShowJobList(@RequestParam("jobs") String jobID, @PathVariable("skillID") long skillID,  @ModelAttribute("job") Job j, Model model){
+    @RequestMapping("/joblist")
    public String ShowJobList(Model model,User user,Job job,Skill skill){
+/*
+        String s="Software Programmer";
+
+        EntityManager session = entityManagerFactory.createEntityManager();
+
+            String jobDes=(String)session.createNativeQuery("Select jobDescription  FROM Job WHERE jobTitle=s").getSingleResult();
+            System.out.println(jobDes);
+*/
         /*
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         System.out.println(auth.getAuthorities());
@@ -269,10 +283,11 @@ public class HomeController {
 //        model.addAttribute("job",jobRepository.)
 //        Skill s=skillRepository.findOne(new Long(skillID));
 //        s.
-       model.addAttribute("job",jobRepository.findAll());
-      model.addAttribute("organization",organizationRepository.findAll());
+        model.addAttribute("job",jobRepository.findAll());
+        model.addAttribute("organization",organizationRepository.findAll());
         return"joblist";
     }
+
     //Job search
     @GetMapping("/search")
     public String getSearch()

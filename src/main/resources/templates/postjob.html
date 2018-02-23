@@ -26,27 +26,24 @@
             <span th:if="${#fields.hasErrors('jobTitle')}" th:errors="*{jobTitle}"></span>
         </div>
 
-        <!--<div class="col-3">-->
-            <!--<label id="labelSkillLevel">Add required skills</label>-->
-            <!--<Select th:field="*{skillLevel}">-->
-                <!--<otpion th:each="job:${}"-->
-                <!--<option value="familiar" >Familiar</option>-->
-                <!--<option value="skilled" >Skilled</option>-->
-                <!--<option value="proficient" >Proficient</option>-->
-            <!--</Select>-->
-            <!--<span th:if="${#fields.hasErrors('skillLevel')}" th:errors="*{skillLevel}"></span>-->
-        <!--</div><br/>-->
-
         <div class="col-3">
             <label id="labelRequiredSkill">Required Skill</label>
             <input type="text" class="form-control" id="textRequiredSkill" th:field="*{requiredSkill}" placeholder="Enter required skills"/>
             <span th:if="${#fields.hasErrors('requiredSkill')}" th:errors="*{requiredSkill}"></span>
         </div>
+
         <div class="col-3">
             <label id="labelRequiredExperience">Required Experience</label>
             <input type="text" class="form-control" id="textRequiredExperience" th:field="*{requiredExperience}" placeholder="Enter required experience"/>
             <span th:if="${#fields.hasErrors('requiredExperience')}" th:errors="*{requiredExperience}"></span>
         </div>
+
+        <div class="col-6">
+            <label id="labelOrganization">Organization</label><br/>
+            <input type="text" class="form-control" id="textOrganization" th:field="*{_orgnization}" placeholder="Enter organization"/>
+            <span th:if="${#fields.hasErrors('_orgnization')}" th:errors="*{_orgnization}"></span>
+        </div>
+
         <div class="col-6">
             <label id="labelJobDescription">Job Description</label><br/>
             <textarea class="col-6" id="textJobDescription" th:field="*{jobDescription}" rows="3" placeholder="Enter job description"></textarea>

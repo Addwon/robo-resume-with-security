@@ -20,7 +20,7 @@ public class Job {
     @Size(min=2)
     private String requiredSkill;
 
-    @NotNull
+
     @Size(min=2)
     private String _orgnization;
 

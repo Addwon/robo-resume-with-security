@@ -28,7 +28,8 @@
 
             <td th:text="${applicant.email}"></td>
 
-            <td><a th:href="@{/showresume/{id} (id=${applicant.id})}">Resume</a></td>
+            <!--<td><a th:href="@{/showresumeco/{id} (id=${applicant.id})}">Resume</a></td>-->
+            <td><a th:href="/completedresume">Resume</a></td>
         </tr>
         </tbody>
     </table>
