@@ -26,19 +26,22 @@
 
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/summary">Summary</a>
+                    <a class="nav-link" sec:authorize="hasAuthority('APPLICANT')" href="/summary">Add Summary</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" sec:authorize="hasAuthority('APPLICANT')" href="/coverletterform">Add Cover Letter</a>
                 </li>
                 <!--<li class="nav-item ">-->
                     <!--<a class="nav-link" href="/contactinfo">Contact Information</a>-->
                 <!--</li>-->
                 <li class="nav-item">
-                    <a class="nav-link" href="/education">Education</a>
+                    <a class="nav-link" sec:authorize="hasAuthority('APPLICANT')" href="/education">Education</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/skill">Skill</a>
+                    <a class="nav-link" sec:authorize="hasAuthority('APPLICANT')" href="/skill">Skill</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/experience">Experience</a>
+                    <a class="nav-link" sec:authorize="hasAuthority('APPLICANT')" href="/experience">Experience</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" sec:authorize="hasAuthority('RECRUITER')" href="/postjob">Post Job</a>
@@ -70,7 +73,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" sec:authorize="isAnonymous()" href="/register">Sign up</a>
+                    <a class="nav-link" sec:authorize="isAnonymous()" href="/registration">Sign up</a>
                 </li>
                 <li class="nav-item">
                     <!--<a class="nav-link" href="/login">Login</a>-->

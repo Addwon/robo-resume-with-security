@@ -8,6 +8,7 @@
 </head>
 <body>
 <div th:replace="base::navlinks"></div>
+
 <div class="container">
 <div class="col-md-6 col-md-offset-3">
     <form th:action="@{/search}" method="post">
@@ -17,21 +18,24 @@
 </div>
 
 <div class="container">
-    <table class="table" title="Books Table" th:each="organization : ${organization}">
+    <table class="table" title="Job List" th:each="organization : ${organization}">
         <thead>
         <tr>
+            <td><b>Organization</b></td>
             <td th:text="${organization.organizationName}"></td>  <td th:text="${organization.organizationAddress}"></td>
         </tr>
         <tr>
-            <th>Title</th>
-            <th>Description</th>
+            <th>Job Title</th>
+            <th>Job Description</th>
             <th>Required Skill</th>
             <th>Required Experience</th>
             <!--<th>Organization</th>            -->
         </tr>
         </thead>
         <tbody>
-        <tr th:each="job : ${job}">
+
+        <tr th:each="job : ${job}" >
+
             <td th:text="${job.jobTitle}"></td>
 
             <td th:text="${job.jobDescription}"></td>

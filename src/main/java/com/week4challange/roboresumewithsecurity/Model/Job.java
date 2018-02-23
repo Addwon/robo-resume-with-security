@@ -1,10 +1,8 @@
-package com.week4challange.roboresumewithsecurity;
+package com.week4challange.roboresumewithsecurity.Model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Job {
@@ -28,8 +26,11 @@ public class Job {
     @Size(min=10)
     private String jobDescription;
 
-    @ManyToMany(mappedBy = "org")
-    private List<Organization> jobs;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Organization organization;
+
+//    @ManyToMany(mappedBy = "org")
+//    private List<Organization> jobs;
 
     public long getId() {
         return id;
@@ -71,11 +72,19 @@ public class Job {
         this.jobDescription = jobDescription;
     }
 
-    public List<Organization> getJobs() {
-        return jobs;
+    public Organization getOrganization() {
+        return organization;
     }
 
-    public void setJobs(List<Organization> jobs) {
-        this.jobs = jobs;
+    public void setOrganization(Organization organization) {
+        this.organization = organization;
     }
+
+//    public List<Organization> getJobs() {
+//        return jobs;
+//    }
+//
+//    public void setJobs(List<Organization> jobs) {
+//        this.jobs = jobs;
+//    }
 }

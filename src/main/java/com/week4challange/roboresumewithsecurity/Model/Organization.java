@@ -1,9 +1,11 @@
-package com.week4challange.roboresumewithsecurity;
+package com.week4challange.roboresumewithsecurity.Model;
+
+import com.week4challange.roboresumewithsecurity.Model.Job;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -20,8 +22,11 @@ public class Organization {
     @Size(min=5)
     private String organizationAddress;
 
-    @ManyToMany
-    private List<Job> org;
+    @OneToMany(mappedBy = "organization")
+    private Set<Job> jobPostSet = new HashSet<>();
+
+//    @ManyToMany
+//    private List<Job> org;
 
     public long getId() {
         return id;
@@ -47,11 +52,19 @@ public class Organization {
         this.organizationAddress = organizationAddress;
     }
 
-    public List<Job> getOrg() {
-        return org;
+    public Set<Job> getJobPostSet() {
+        return jobPostSet;
     }
 
-    public void setOrg(List<Job> org) {
-        this.org = org;
+    public void setJobPostSet(Set<Job> jobPostSet) {
+        this.jobPostSet = jobPostSet;
     }
+
+//    public List<Job> getOrg() {
+//        return org;
+//    }
+//
+//    public void setOrg(List<Job> org) {
+//        this.org = org;
+//    }
 }

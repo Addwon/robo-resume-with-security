@@ -22,13 +22,6 @@
         <span th:if="${#fields.hasErrors('summary')}" th:errors="*{summary}"></span>
     </div>
     <br/>
-
-    <div class="col-6">
-        <label id="labelCover">Add cover letter</label><br/>
-        <textarea class="col-10" id="textCover" th:field="*{coverLetter}" rows="12" placeholder="Enter cover letter"></textarea>
-        <span th:if="${#fields.hasErrors('coverLetter')}" th:errors="*{coverLetter}"></span>
-    </div>
-    <br/>
     <div class="col-3">
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>

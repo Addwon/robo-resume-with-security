@@ -1,5 +1,7 @@
-package com.week4challange.roboresumewithsecurity;
+package com.week4challange.roboresumewithsecurity.DataLoader;
 
+import com.week4challange.roboresumewithsecurity.Model.*;
+import com.week4challange.roboresumewithsecurity.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -20,9 +22,6 @@ public class DataLoader implements CommandLineRunner {
 
     @Autowired
     OrganizationRepository organizationRepository;
-
-    @Autowired
-    UserDataRepository userDataRepository;
 
     @Autowired
     EducationRepository educationRepository;

@@ -1,4 +1,4 @@
-package com.week4challange.roboresumewithsecurity;
+package com.week4challange.roboresumewithsecurity.Configuration;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.Singleton;

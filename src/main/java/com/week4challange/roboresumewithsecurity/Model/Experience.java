@@ -1,9 +1,9 @@
-package com.week4challange.roboresumewithsecurity;
+package com.week4challange.roboresumewithsecurity.Model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Experience {
@@ -27,9 +27,12 @@ public class Experience {
     @Size(min=10)
     String duties;
 
+    @ManyToMany
+    private Set<User> user;
+    /*
     @ManyToMany(mappedBy = "usrexp")
     private List<User> experiences;
-
+*/
     public long getId() {
         return id;
     }
@@ -70,11 +73,12 @@ public class Experience {
         this.duties = duties;
     }
 
-    public List<User> getExperiences() {
-        return experiences;
+
+    public Set<User> getUser() {
+        return user;
     }
 
-    public void setExperiences(List<User> experiences) {
-        this.experiences = experiences;
+    public void setUser(Set<User> user) {
+        this.user = user;
     }
 }

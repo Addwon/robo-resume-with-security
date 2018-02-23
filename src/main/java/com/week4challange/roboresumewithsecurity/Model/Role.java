@@ -1,4 +1,4 @@
-package com.week4challange.roboresumewithsecurity;
+package com.week4challange.roboresumewithsecurity.Model;
 
 import javax.persistence.*;
 import java.util.Collection;

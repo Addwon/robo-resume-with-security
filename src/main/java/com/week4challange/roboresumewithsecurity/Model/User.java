@@ -1,8 +1,14 @@
-package com.week4challange.roboresumewithsecurity;
+package com.week4challange.roboresumewithsecurity.Model;
+
+import com.week4challange.roboresumewithsecurity.Model.Education;
+import com.week4challange.roboresumewithsecurity.Model.Experience;
+import com.week4challange.roboresumewithsecurity.Model.Role;
+import com.week4challange.roboresumewithsecurity.Model.Skill;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -38,6 +44,16 @@ public class User {
     inverseJoinColumns=@JoinColumn(name="role_id"))
     private Collection<Role> roles;
 
+    @ManyToMany(mappedBy="user",fetch=FetchType.LAZY)
+    private Set<Education> educationset = new HashSet<>();
+
+    @ManyToMany(mappedBy = "user")
+    private Set<Experience> experienceset = new HashSet<>();
+
+    @ManyToMany(mappedBy = "user")
+    private Set<Skill> skillset = new HashSet<>();
+
+   /*
     @ManyToMany
     @JoinTable(joinColumns=@JoinColumn(name = "user_id"),
             inverseJoinColumns=@JoinColumn(name="education_id"))
@@ -52,7 +68,7 @@ public class User {
     @JoinTable(joinColumns=@JoinColumn(name = "user_id"),
             inverseJoinColumns=@JoinColumn(name="skill_id"))
     private List<Skill> usrskill;
-
+*/
     public User(String email, String password, String firstName, String lastName, boolean enabled, String username,String imgUrl) {
         this.email = email;
         this.password = password;
@@ -138,12 +154,28 @@ public class User {
         this.imgUrl = imgUrl;
     }
 
-//    public byte[] getImage() {
-//        return image;
-//    }
-//
-//    public void setImage(byte[] image) {
-//        this.image = image;
-//    }
+    public Set<Education> getEducationset() {
+        return educationset;
+    }
+
+    public void setEducationset(Set<Education> educationset) {
+        this.educationset = educationset;
+    }
+
+    public Set<Experience> getExperienceset() {
+        return experienceset;
+    }
+
+    public void setExperienceset(Set<Experience> experienceset) {
+        this.experienceset = experienceset;
+    }
+
+    public Set<Skill> getSkillset() {
+        return skillset;
+    }
+
+    public void setSkillset(Set<Skill> skillset) {
+        this.skillset = skillset;
+    }
 }
 

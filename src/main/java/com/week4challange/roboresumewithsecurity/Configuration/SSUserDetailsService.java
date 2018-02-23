@@ -1,5 +1,8 @@
-package com.week4challange.roboresumewithsecurity;
+package com.week4challange.roboresumewithsecurity.Configuration;
 
+import com.week4challange.roboresumewithsecurity.Model.Role;
+import com.week4challange.roboresumewithsecurity.Model.User;
+import com.week4challange.roboresumewithsecurity.Repository.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,6 +1,10 @@
-package com.week4challange.roboresumewithsecurity;
+package com.week4challange.roboresumewithsecurity.Controller;
 
 import com.cloudinary.utils.ObjectUtils;
+import com.week4challange.roboresumewithsecurity.Configuration.CloudinaryConfig;
+import com.week4challange.roboresumewithsecurity.Configuration.UserService;
+import com.week4challange.roboresumewithsecurity.Model.*;
+import com.week4challange.roboresumewithsecurity.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -9,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,8 +24,6 @@ import java.util.Map;
 
 @Controller
 public class HomeController {
-    @Autowired
-    UserDataRepository userdataRepository;
 
     @Autowired
     EducationRepository educationRepository;
@@ -68,29 +69,32 @@ public class HomeController {
     }
 
     //For user registration
-    @RequestMapping(value="/register",method=RequestMethod.GET)
+    @RequestMapping(value="/registration",method=RequestMethod.GET)
     public String showRegistrationPage(Model model){
         model.addAttribute("user",new User());
         return "registration";
     }
 
 
-    @RequestMapping(value="/register",method= RequestMethod.POST)
-    public String processRegistrationPage(@Valid @ModelAttribute("User") User user, BindingResult result, Model model){
-//        MultipartFile f = request.getFile("file");
-//        if(f.isEmpty()){
-//            return "registration";
-//        }
-//        try{
-//            Map uploadResult=cloudc.upload(f.getBytes(),
-//                    ObjectUtils.asMap("resourcetype","auto"));
-//            user.setImgUrl(uploadResult.get("url").toString());
-//
-//        }catch (IOException e){
-//            e.printStackTrace();
-//            return "registration";
-//        }
-////        model.addAttribute("user",user);
+    @RequestMapping(value="/registration",method= RequestMethod.POST)
+    public String processRegistrationPage(@Valid @ModelAttribute("user") User user,@RequestParam("file")MultipartFile file, BindingResult result,
+                                          RedirectAttributes redirectAttributes){
+        if(result.hasErrors()){
+            return "registration";
+        }
+        if(file.isEmpty()){
+            return "registration";
+        }
+        try{
+            Map uploadResult=cloudc.upload(file.getBytes(),
+                    ObjectUtils.asMap("resourcetype","auto"));
+            user.setImgUrl(uploadResult.get("url").toString());
+            //actorRepository.save(actor);
+        }catch (IOException e){
+            e.printStackTrace();
+            return "registration";
+        }
+//        model.addAttribute("user",user);
         if(result.hasErrors()){
             return "registration";
         }else{
@@ -100,36 +104,7 @@ public class HomeController {
         return "redirect:/";
     }
 
-//    //Add contact info
-//    @GetMapping("/contactinfo")
-//    public String addContactInfo(Model model){
-//        model.addAttribute("user",new UserData());
-//        return "contactinfo";
-//    }
-//    @PostMapping("/addcontactinfo")
-//    public String addContactInfoForm(@Valid @ModelAttribute("user") UserData user, @RequestParam("file")MultipartFile file, BindingResult result,
-//                                 RedirectAttributes redirectAttributes){
-//        if(file.isEmpty()){
-//            return "contactinfo";
-//        }
-//        try{
-//            Map uploadResult=cloudc.upload(file.getBytes(),
-//                    ObjectUtils.asMap("resourcetype","auto"));
-//            user.setImgUrl(uploadResult.get("url").toString());
-//
-//        }catch (IOException e){
-//            e.printStackTrace();
-//            return "contactinfo";
-//        }
-//        if(result.hasErrors()){
-//            return "contactinfo";
-//        }
-//        else{
-//            userdataRepository.save(user);
-//            return "redirect:/";
-//        }
-//
-//    }
+
 
     //Add educational achievements
     @GetMapping("/education")
@@ -200,6 +175,22 @@ public class HomeController {
             return "redirect:/";
         }
     }
+    @GetMapping("/coverletterform")
+    public String addCoverLetter(Model model){
+        model.addAttribute("cover",new Cover());
+        return "coverletterform";
+    }
+    @PostMapping("/coverletterform")
+    public String addCoverLetterForm(@Valid @ModelAttribute("cover") Cover cover, BindingResult result,
+                                 RedirectAttributes redirectAttributes){
+        if(result.hasErrors()){
+            return "coverletterform";
+        }
+        else{
+            coverRepository.save(cover);
+            return "redirect:/";
+        }
+    }
     //Add reference
     @GetMapping("/reference")
     public String addReference(Model model){
@@ -247,6 +238,35 @@ public class HomeController {
         model.addAttribute("covers",coverRepository.findAll());
         return "completedresume";
     }
+
+/*
+@RequestMapping("/completedresume")
+public String showCompleteResume(Model model,Principal p){
+
+    model.addAttribute("users",userRepository.findDistinctByRoles(p.getName()));
+    model.addAttribute("educations",educationRepository.findAll());
+    model.addAttribute("experiences",experienceRepository.findAll());
+    model.addAttribute("skills",skillRepository.findAll());
+    model.addAttribute("covers",coverRepository.findAll());
+    return "completedresume";
+}*/
+
+//    @RequestMapping("/completedresume")
+//    public String showCompleteResume(User user, Model model){
+//        model.addAttribute("users",userRepository.findAll());
+//        //ModelAndView modelAndView = new ModelAndView();
+//        //modelAndView.addAllObjects("users",userRepository.findAll());
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        String uname=auth.getPrincipal().toString();
+//        //model.addAttribute("users",userdataRepository.findAll());
+//        model.addAttribute("users",userRepository.findByUsername(uname));
+//        System.out.println(user.getId());
+////        model.addAttribute("educations",educationRepository.findAll());
+////        model.addAttribute("experiences",experienceRepository.findAll());
+////        model.addAttribute("skills",skillRepository.findAll());
+////        model.addAttribute("covers",coverRepository.findAll());
+//        return "completedresume";
+//    }
     @RequestMapping("/showcoverletter")
     public String ShowCoverLetter(Model model){
         model.addAttribute("covers",coverRepository.findAll());
@@ -308,7 +328,14 @@ public class HomeController {
         String searchString = request.getParameter("search");
         model.addAttribute("search",searchString);
         model.addAttribute("jobs",jobRepository.findAllByRequiredSkillContainingIgnoreCase(searchString));
+        //model.addAttribute("jobs",organizationRepository.findAllByOrganizationNameContainingIgnoreCase(searchString));
         return "jobsearchresult";
+    }
+    //Applicant list
+        @RequestMapping("/apply/{id}")
+        public String listApplicant(@PathVariable("id") long id, Model model){
+        model.addAttribute("user", userRepository.findOne(id));
+        return "applicantlist";
     }
 //----------------------- Edit ---------------------------------
     @RequestMapping("/editcontact/{id}")

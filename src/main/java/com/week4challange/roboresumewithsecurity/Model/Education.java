@@ -1,9 +1,9 @@
-package com.week4challange.roboresumewithsecurity;
+package com.week4challange.roboresumewithsecurity.Model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Education {
@@ -23,9 +23,14 @@ public class Education {
     @NotNull
     private int gradYear;
 
+    @ManyToMany(fetch=FetchType.EAGER)
+    @JoinTable(joinColumns=@JoinColumn(name = "user_id"),
+            inverseJoinColumns=@JoinColumn(name="educationset_id"))
+    private Set<User> user;
+  /*
     @ManyToMany(mappedBy = "usredu")
     private List<User> educations;
-
+*/
     public long getId() {
         return id;
     }
@@ -58,11 +63,12 @@ public class Education {
         this.gradYear = gradYear;
     }
 
-    public List<User> getEducations() {
-        return educations;
+
+    public Set<User> getUser() {
+        return user;
     }
 
-    public void setEducations(List<User> educations) {
-        this.educations = educations;
+    public void setUser(Set<User> user) {
+        this.user = user;
     }
 }

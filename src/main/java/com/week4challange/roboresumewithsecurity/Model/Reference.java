@@ -1,4 +1,4 @@
-package com.week4challange.roboresumewithsecurity;
+package com.week4challange.roboresumewithsecurity.Model;
 
 import org.hibernate.validator.constraints.Email;
 
