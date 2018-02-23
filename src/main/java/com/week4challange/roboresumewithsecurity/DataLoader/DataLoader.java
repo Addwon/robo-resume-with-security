@@ -34,8 +34,8 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception{
-       System.out.println("Loading data . . .");
-       //roleRepository.save(new Role("USER"));
+        System.out.println("Loading data . . .");
+        //roleRepository.save(new Role("USER"));
         roleRepository.save(new Role("ADMIN"));
 
         Role adminRole=roleRepository.findByRole("ADMIN");
@@ -62,7 +62,12 @@ public class DataLoader implements CommandLineRunner {
         user=new User("recruiter@recruiter.com","recruiter","Recruiter","User",true,"recruiter","");
         user.setRoles(Arrays.asList(recruiterRole));
         userRepository.save(user);
-
+/*
+        Skill skillType=skillRepository.findByType("Java");
+        user=new User("jjjschmidt@gmail.com","applicant","John","Jingleheimer-Schmidt",true,"applicant","https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50");
+        user.setSkills(Arrays.asList(skillType));
+        userRepository.save(user);
+        */
 //        UserData user1=new UserData();
 //        user1.setFirstName("John");
 //        user1.setLastName("Jingleheimer-Schmidt");
@@ -82,11 +87,15 @@ public class DataLoader implements CommandLineRunner {
         experience.setDuties("programming and database dev't");
         experienceRepository.save(experience);
 
-        Skill skill=new Skill();
-        skill.setType("PHP");
-        skill.setSkillLevel("Highly skilled");
-        skillRepository.save(skill);
+        Skill skill1=new Skill();
+        skill1.setType("Java");
+        skill1.setSkillLevel("Highly skilled");
+        skillRepository.save(skill1);
 
+        Skill skill2=new Skill();
+        skill2.setType("PHP");
+        skill2.setSkillLevel("skilled");
+        skillRepository.save(skill2);
 
         Organization orgn1=new Organization();
         orgn1.setOrganizationName("Montgomery College");
@@ -96,20 +105,23 @@ public class DataLoader implements CommandLineRunner {
         Organization orgn2=new Organization();
         orgn2.setOrganizationName("XYZ Company");
         orgn2.setOrganizationAddress("5929 Georgia Ave");
+
         organizationRepository.save(orgn2);
 
         Job job1=new Job();
         job1.setJobTitle("Software Programmer");
         job1.setJobDescription("Developing application software for small scale businesses");
-        job1.setRequiredSkill("java");
+        job1.setRequiredSkill(skill1.getType()+","+skill1.getSkillLevel());
         job1.setRequiredExperience("2 years");
         jobRepository.save(job1);
 
         Job job2=new Job();
-        job2.setJobTitle("Software Programmer");
+        job2.setJobTitle("Web Developer");
         job2.setJobDescription("Web development");
-        job2.setRequiredSkill("PHP");
+        //job2.setRequiredSkill("PHP");
+        job2.setRequiredSkill(skill2.getType()+","+skill2.getSkillLevel());
         job2.setRequiredExperience("3 years");
         jobRepository.save(job2);
+
     }
 }

@@ -3,6 +3,8 @@ package com.week4challange.roboresumewithsecurity.Model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Job {
@@ -28,6 +30,13 @@ public class Job {
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Organization organization;
+
+    @ManyToMany(mappedBy="requiredSkills")
+    private Set<Skill> skills;
+
+    public Job(){
+        skills=new HashSet<Skill>();
+    }
 
 //    @ManyToMany(mappedBy = "org")
 //    private List<Organization> jobs;
@@ -80,6 +89,14 @@ public class Job {
         this.organization = organization;
     }
 
+    public Set<Skill> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(Set<Skill> skills) {
+        this.skills = skills;
+    }
+//public void addJob(Job j){this.requiredSkill.add(j);}
 //    public List<Organization> getJobs() {
 //        return jobs;
 //    }

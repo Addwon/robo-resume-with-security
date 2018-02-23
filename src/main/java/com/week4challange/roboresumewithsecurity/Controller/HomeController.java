@@ -248,31 +248,14 @@ public class HomeController {
     }
     @RequestMapping("/showreference")
     public String ShowReference(User user,Principal p,Model model){
-//        //user=userRepository.findOne(id);
-//        model.addAttribute("references", referenceRepository.findAll());
-//        String activeUserType="";
-//        activeUserType=user.getUsertype();
-//        System.out.println(user.getUsertype());
-//
-//        System.out.println(p.getName());
-//        String activeUserType="";
-//        activeUserType=user.getUsertype();
-//        //activeUser=p.getName().toString();
-//        //System.out.println(activeUser);
-//        if(activeUserType=="Applicant") {
-//            model.addAttribute("references", referenceRepository.findAll());
-//            return "showreference";
-//        }
-//        else{
-//            System.out.println("Access Denied");
-//            return "redirect:/";
-//        }
         model.addAttribute("references", referenceRepository.findAll());
         return "showreference";
     }
 
     @RequestMapping("/joblist")
-    public String ShowJobList(Model model,User user,Job job,Skill skill){
+   // public String ShowJobList(@RequestParam("jobs") String jobID, @PathVariable("skillID") long skillID,  @ModelAttribute("job") Job j, Model model){
+
+   public String ShowJobList(Model model,User user,Job job,Skill skill){
         /*
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         System.out.println(auth.getAuthorities());
@@ -284,6 +267,8 @@ public class HomeController {
         */
       //  model.addAttribute("job",jobRepository.findAllByRequiredSkillContainingIgnoreCase())
 //        model.addAttribute("job",jobRepository.)
+//        Skill s=skillRepository.findOne(new Long(skillID));
+//        s.
        model.addAttribute("job",jobRepository.findAll());
       model.addAttribute("organization",organizationRepository.findAll());
         return"joblist";
@@ -301,6 +286,7 @@ public class HomeController {
         //Get the search string from the result form
         String searchString = request.getParameter("search");
         model.addAttribute("search",searchString);
+        //model.addAttribute("org",organizationRepository.findByOrganizationAndRequiredSkill(searchString));
         model.addAttribute("jobs",jobRepository.findAllByRequiredSkillContainingIgnoreCase(searchString));
         //model.addAttribute("jobs",organizationRepository.findAllByOrganizationNameContainingIgnoreCase(searchString));
         return "jobsearchresult";

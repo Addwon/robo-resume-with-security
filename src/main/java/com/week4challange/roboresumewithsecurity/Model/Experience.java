@@ -3,6 +3,7 @@ package com.week4challange.roboresumewithsecurity.Model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Collection;
 import java.util.Set;
 
 @Entity
@@ -26,9 +27,12 @@ public class Experience {
     @NotNull
     @Size(min=10)
     String duties;
+//
+//    @ManyToMany(mappedBy="experiences",fetch=FetchType.LAZY)
+//    private Collection<User> users;
 
-    @ManyToMany
-    private Set<User> user;
+//    @ManyToMany
+//    private Set<User> user;
     /*
     @ManyToMany(mappedBy = "usrexp")
     private List<User> experiences;
@@ -73,12 +77,20 @@ public class Experience {
         this.duties = duties;
     }
 
+//    public Collection<User> getUsers() {
+//        return users;
+//    }
+//
+//    public void setUsers(Collection<User> users) {
+//        this.users = users;
+//    }
 
-    public Set<User> getUser() {
-        return user;
-    }
 
-    public void setUser(Set<User> user) {
-        this.user = user;
-    }
+//    public Set<User> getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(Set<User> user) {
+//        this.user = user;
+//    }
 }

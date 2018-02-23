@@ -9,5 +9,5 @@ public interface JobRepository extends CrudRepository<Job,Long> {
 
     Iterable<Job> findAllByRequiredSkillContainingIgnoreCase(String requiredskill);
 Set<Job> findByJobTitle(String jobtitle);
-
+//Job findByOrganizationAndRequiredSkill(String search);
 }

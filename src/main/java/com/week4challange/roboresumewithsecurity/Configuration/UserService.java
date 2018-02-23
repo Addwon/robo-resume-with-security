@@ -2,6 +2,7 @@ package com.week4challange.roboresumewithsecurity.Configuration;
 
 import com.week4challange.roboresumewithsecurity.Model.User;
 import com.week4challange.roboresumewithsecurity.Repository.RoleRepository;
+import com.week4challange.roboresumewithsecurity.Repository.SkillRepository;
 import com.week4challange.roboresumewithsecurity.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,9 @@ public class UserService {
 
     @Autowired
     RoleRepository roleRepository;
+
+    @Autowired
+    SkillRepository skillRepository;
 
     @Autowired
     public UserService(UserRepository userRepository){
@@ -56,4 +60,9 @@ public class UserService {
         user.setEnabled(true);
         userRepository.save(user);
     }
+    /*
+    public void saveSkill(User user){
+        user.setSkills(Arrays.asList(skillRepository.findByType("Java")));
+        userRepository.save(user);
+    }*/
 }

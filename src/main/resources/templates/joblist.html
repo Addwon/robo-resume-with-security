@@ -12,7 +12,7 @@
 <div class="container">
 <div class="col-md-6 col-md-offset-3">
     <form th:action="@{/search}" method="post">
-        <label>Search  </label><input type="text" name="search"/>
+        <label>Search </label><span><input type="text" name="search" placeholder="Search by skill"/></span>
     </form>
 </div>
 </div>
@@ -22,7 +22,8 @@
         <thead>
         <tr>
             <td><b>Organization</b></td>
-            <td th:text="${organization.organizationName}"></td>  <td th:text="${organization.organizationAddress}"></td>
+            <td th:text="${organization.organizationName}+', '+ ${organization.organizationAddress}"></td>
+            <!--<td th:text="${organization.organizationAddress}"></td>-->
         </tr>
         <tr>
             <th>Job Title</th>

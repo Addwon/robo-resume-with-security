@@ -3,6 +3,7 @@ package com.week4challange.roboresumewithsecurity.Model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Collection;
 import java.util.Set;
 
 @Entity
@@ -23,10 +24,13 @@ public class Education {
     @NotNull
     private int gradYear;
 
-    @ManyToMany(fetch=FetchType.EAGER)
-    @JoinTable(joinColumns=@JoinColumn(name = "user_id"),
-            inverseJoinColumns=@JoinColumn(name="educationset_id"))
-    private Set<User> user;
+//    @ManyToMany(mappedBy="educations",fetch=FetchType.LAZY)
+//    private Collection<User> users;
+
+//    @ManyToMany(fetch=FetchType.EAGER)
+//    @JoinTable(joinColumns=@JoinColumn(name = "user_id"),
+//            inverseJoinColumns=@JoinColumn(name="educationset_id"))
+//    private Set<User> user;
   /*
     @ManyToMany(mappedBy = "usredu")
     private List<User> educations;
@@ -63,12 +67,20 @@ public class Education {
         this.gradYear = gradYear;
     }
 
+//    public Collection<User> getUsers() {
+//        return users;
+//    }
+//
+//    public void setUsers(Collection<User> users) {
+//        this.users = users;
+//    }
 
-    public Set<User> getUser() {
-        return user;
-    }
 
-    public void setUser(Set<User> user) {
-        this.user = user;
-    }
+//    public Set<User> getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(Set<User> user) {
+//        this.user = user;
+//    }
 }

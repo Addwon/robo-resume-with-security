@@ -44,6 +44,25 @@ public class User {
     inverseJoinColumns=@JoinColumn(name="role_id"))
     private Collection<Role> roles;
 
+//    @ManyToMany(mappedBy="user")
+//    private Set<User> users;
+
+
+//    @ManyToMany(fetch=FetchType.EAGER)
+//    @JoinTable(joinColumns=@JoinColumn(name = "user_id"),
+//            inverseJoinColumns=@JoinColumn(name="education_id"))
+//    private Collection<Education> educations;
+//
+//    @ManyToMany(fetch=FetchType.EAGER)
+//    @JoinTable(joinColumns=@JoinColumn(name = "user_id"),
+//            inverseJoinColumns=@JoinColumn(name="experience_id"))
+//    private Collection<Experience> experiences;
+//
+//    @ManyToMany(fetch=FetchType.EAGER)
+////    @JoinTable(joinColumns=@JoinColumn(name = "user_id"),
+////            inverseJoinColumns=@JoinColumn(name="skill_id"))
+//    private Collection<Skill> skills;
+/*
     @ManyToMany(mappedBy="user",fetch=FetchType.LAZY)
     private Set<Education> educationset = new HashSet<>();
 
@@ -52,7 +71,7 @@ public class User {
 
     @ManyToMany(mappedBy = "user")
     private Set<Skill> skillset = new HashSet<>();
-
+*/
    /*
     @ManyToMany
     @JoinTable(joinColumns=@JoinColumn(name = "user_id"),
@@ -77,6 +96,7 @@ public class User {
         this.enabled = enabled;
         this.username = username;
         this.imgUrl=imgUrl;
+//        users=new HashSet<User>();
     }
 
     public User() {
@@ -154,28 +174,13 @@ public class User {
         this.imgUrl = imgUrl;
     }
 
-    public Set<Education> getEducationset() {
-        return educationset;
-    }
 
-    public void setEducationset(Set<Education> educationset) {
-        this.educationset = educationset;
-    }
-
-    public Set<Experience> getExperienceset() {
-        return experienceset;
-    }
-
-    public void setExperienceset(Set<Experience> experienceset) {
-        this.experienceset = experienceset;
-    }
-
-    public Set<Skill> getSkillset() {
-        return skillset;
-    }
-
-    public void setSkillset(Set<Skill> skillset) {
-        this.skillset = skillset;
-    }
+//    public Set<User> getUsers() {
+//        return users;
+//    }
+//
+//    public void setUsers(Set<User> users) {
+//        this.users = users;
+//    }
 }
 

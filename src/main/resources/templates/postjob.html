@@ -25,6 +25,18 @@
             <input type="text" class="form-control" id="textJobTitle" th:field="*{jobTitle}" placeholder="Enter job title"/>
             <span th:if="${#fields.hasErrors('jobTitle')}" th:errors="*{jobTitle}"></span>
         </div>
+
+        <!--<div class="col-3">-->
+            <!--<label id="labelSkillLevel">Add required skills</label>-->
+            <!--<Select th:field="*{skillLevel}">-->
+                <!--<otpion th:each="job:${}"-->
+                <!--<option value="familiar" >Familiar</option>-->
+                <!--<option value="skilled" >Skilled</option>-->
+                <!--<option value="proficient" >Proficient</option>-->
+            <!--</Select>-->
+            <!--<span th:if="${#fields.hasErrors('skillLevel')}" th:errors="*{skillLevel}"></span>-->
+        <!--</div><br/>-->
+
         <div class="col-3">
             <label id="labelRequiredSkill">Required Skill</label>
             <input type="text" class="form-control" id="textRequiredSkill" th:field="*{requiredSkill}" placeholder="Enter required skills"/>
