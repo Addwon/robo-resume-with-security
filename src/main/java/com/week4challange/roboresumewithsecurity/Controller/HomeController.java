@@ -5,6 +5,7 @@ import com.week4challange.roboresumewithsecurity.Configuration.CloudinaryConfig;
 import com.week4challange.roboresumewithsecurity.Configuration.UserService;
 import com.week4challange.roboresumewithsecurity.Model.*;
 import com.week4challange.roboresumewithsecurity.Repository.*;
+import org.apache.tomcat.util.http.parser.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -229,9 +230,9 @@ public class HomeController {
     }
 
     @RequestMapping("/completedresume")
-    public String showCompleteResume(Model model){
-        //model.addAttribute("users",userdataRepository.findAll());
-        model.addAttribute("users",userRepository.findAll());
+    public String showCompleteResume(Authentication auth,Authorization auto, Model model ){
+
+        model.addAttribute("users",userRepository.findByUsername(auth.getName()));
         model.addAttribute("educations",educationRepository.findAll());
         model.addAttribute("experiences",experienceRepository.findAll());
         model.addAttribute("skills",skillRepository.findAll());
@@ -239,34 +240,7 @@ public class HomeController {
         return "completedresume";
     }
 
-/*
-@RequestMapping("/completedresume")
-public String showCompleteResume(Model model,Principal p){
 
-    model.addAttribute("users",userRepository.findDistinctByRoles(p.getName()));
-    model.addAttribute("educations",educationRepository.findAll());
-    model.addAttribute("experiences",experienceRepository.findAll());
-    model.addAttribute("skills",skillRepository.findAll());
-    model.addAttribute("covers",coverRepository.findAll());
-    return "completedresume";
-}*/
-
-//    @RequestMapping("/completedresume")
-//    public String showCompleteResume(User user, Model model){
-//        model.addAttribute("users",userRepository.findAll());
-//        //ModelAndView modelAndView = new ModelAndView();
-//        //modelAndView.addAllObjects("users",userRepository.findAll());
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        String uname=auth.getPrincipal().toString();
-//        //model.addAttribute("users",userdataRepository.findAll());
-//        model.addAttribute("users",userRepository.findByUsername(uname));
-//        System.out.println(user.getId());
-////        model.addAttribute("educations",educationRepository.findAll());
-////        model.addAttribute("experiences",experienceRepository.findAll());
-////        model.addAttribute("skills",skillRepository.findAll());
-////        model.addAttribute("covers",coverRepository.findAll());
-//        return "completedresume";
-//    }
     @RequestMapping("/showcoverletter")
     public String ShowCoverLetter(Model model){
         model.addAttribute("covers",coverRepository.findAll());
