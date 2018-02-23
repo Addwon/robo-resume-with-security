@@ -22,20 +22,28 @@ public class Job {
 
     @NotNull
     @Size(min=2)
+    private String _orgnization;
+
+    @NotNull
+    @Size(min=2)
     private String requiredExperience;
 
     @NotNull
     @Size(min=10)
     private String jobDescription;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Organization organization;
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    private Organization organization;
 
     @ManyToMany(mappedBy="requiredSkills")
     private Set<Skill> skills;
 
+    @ManyToMany(mappedBy="ownerorgn")
+    private Set<Organization> orgn;
+
     public Job(){
         skills=new HashSet<Skill>();
+        orgn=new HashSet<Organization>();
     }
 
 //    @ManyToMany(mappedBy = "org")
@@ -81,14 +89,6 @@ public class Job {
         this.jobDescription = jobDescription;
     }
 
-    public Organization getOrganization() {
-        return organization;
-    }
-
-    public void setOrganization(Organization organization) {
-        this.organization = organization;
-    }
-
     public Set<Skill> getSkills() {
         return skills;
     }
@@ -96,12 +96,21 @@ public class Job {
     public void setSkills(Set<Skill> skills) {
         this.skills = skills;
     }
-//public void addJob(Job j){this.requiredSkill.add(j);}
-//    public List<Organization> getJobs() {
-//        return jobs;
-//    }
-//
-//    public void setJobs(List<Organization> jobs) {
-//        this.jobs = jobs;
-//    }
+
+
+    public Set<Organization> getOrgn() {
+        return orgn;
+    }
+
+    public void setOrgn(Set<Organization> orgn) {
+        this.orgn = orgn;
+    }
+
+    public String get_orgnization() {
+        return _orgnization;
+    }
+
+    public void set_orgnization(String _orgnization) {
+        this._orgnization = _orgnization;
+    }
 }

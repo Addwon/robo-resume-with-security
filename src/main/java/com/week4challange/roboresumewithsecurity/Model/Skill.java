@@ -21,7 +21,8 @@ public class Skill {
     @Size(min=2)
     String skillLevel;
 
-
+    @ManyToMany()
+    private Set<Job> requiredSkills;
 
     public Set<Job> getRequiredSkills() {
         return requiredSkills;
@@ -32,8 +33,7 @@ public class Skill {
     }
 
 
-    @ManyToMany()
-    private Set<Job> requiredSkills;
+
 
 //    @ManyToMany()
 //    private Set<User> user;

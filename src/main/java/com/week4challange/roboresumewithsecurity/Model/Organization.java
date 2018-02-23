@@ -22,8 +22,15 @@ public class Organization {
     @Size(min=5)
     private String organizationAddress;
 
-    @OneToMany(mappedBy = "organization")
-    private Set<Job> jobPostSet = new HashSet<>();
+    @ManyToMany()
+    private Set<Job> ownerorgn;
+
+//    @ManyToMany(mappedBy="jobs")
+//    private Set<Job> jobs;
+
+    public Organization(){
+        this.ownerorgn=new HashSet<Job>();
+    }
 
 //    @ManyToMany
 //    private List<Job> org;
@@ -52,19 +59,12 @@ public class Organization {
         this.organizationAddress = organizationAddress;
     }
 
-    public Set<Job> getJobPostSet() {
-        return jobPostSet;
+
+    public Set<Job> getOwnerorgn() {
+        return ownerorgn;
     }
 
-    public void setJobPostSet(Set<Job> jobPostSet) {
-        this.jobPostSet = jobPostSet;
+    public void setOwnerorgn(Set<Job> ownerorgn) {
+        this.ownerorgn = ownerorgn;
     }
-
-//    public List<Job> getOrg() {
-//        return org;
-//    }
-//
-//    public void setOrg(List<Job> org) {
-//        this.org = org;
-//    }
 }

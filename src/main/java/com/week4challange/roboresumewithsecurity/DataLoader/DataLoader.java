@@ -97,22 +97,26 @@ public class DataLoader implements CommandLineRunner {
         skill2.setSkillLevel("skilled");
         skillRepository.save(skill2);
 
+
         Organization orgn1=new Organization();
         orgn1.setOrganizationName("Montgomery College");
         orgn1.setOrganizationAddress("12 Summit street Getsburg");
+        //orgn1.setJobs(null);
         organizationRepository.save(orgn1);
 
         Organization orgn2=new Organization();
         orgn2.setOrganizationName("XYZ Company");
         orgn2.setOrganizationAddress("5929 Georgia Ave");
-
+        //orgn2.setJobs(null);
         organizationRepository.save(orgn2);
+
 
         Job job1=new Job();
         job1.setJobTitle("Software Programmer");
         job1.setJobDescription("Developing application software for small scale businesses");
         job1.setRequiredSkill(skill1.getType()+","+skill1.getSkillLevel());
         job1.setRequiredExperience("2 years");
+        job1.set_orgnization(orgn1.getOrganizationName()+" "+orgn1.getOrganizationAddress());
         jobRepository.save(job1);
 
         Job job2=new Job();
@@ -121,6 +125,7 @@ public class DataLoader implements CommandLineRunner {
         //job2.setRequiredSkill("PHP");
         job2.setRequiredSkill(skill2.getType()+","+skill2.getSkillLevel());
         job2.setRequiredExperience("3 years");
+        job2.set_orgnization(orgn2.getOrganizationName()+" "+orgn2.getOrganizationAddress());
         jobRepository.save(job2);
 
     }

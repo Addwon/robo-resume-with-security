@@ -288,6 +288,7 @@ public class HomeController {
         model.addAttribute("search",searchString);
         //model.addAttribute("org",organizationRepository.findByOrganizationAndRequiredSkill(searchString));
         model.addAttribute("jobs",jobRepository.findAllByRequiredSkillContainingIgnoreCase(searchString));
+        model.addAttribute("jobs",jobRepository.findAllBy_orgnizationContainingIgnoreCase(searchString));
         //model.addAttribute("jobs",organizationRepository.findAllByOrganizationNameContainingIgnoreCase(searchString));
         return "jobsearchresult";
     }

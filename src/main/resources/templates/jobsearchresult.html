@@ -17,7 +17,7 @@
             <th>Description</th>
             <th>Required Skill</th>
             <th>Required Experience</th>
-            <!--<th>Organization</th>            -->
+            <th>Organization</th>
         </tr>
         </thead>
         <tbody>
@@ -33,6 +33,7 @@
             <td th:text="${job.requiredSkill}"></td>
 
             <td th:text="${job.requiredExperience}"></td>
+            <td th:text="${job._orgnization}"></td>
 
             <td><a sec:authorize="hasAuthority('APPLICANT')" th:href="@{/apply/{id} (id=${job.id})}">Apply</a></td>
         </tr>
