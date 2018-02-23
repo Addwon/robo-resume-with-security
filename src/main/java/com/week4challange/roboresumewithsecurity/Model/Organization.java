@@ -21,16 +21,20 @@ public class Organization {
     @NotNull
     @Size(min=5)
     private String organizationAddress;
+//
+//    @ManyToMany()
+//    private Set<Job> ownerorgn;
 
-    @ManyToMany()
-    private Set<Job> ownerorgn;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable
+    private Set<Job> jobs;
 
 //    @ManyToMany(mappedBy="jobs")
 //    private Set<Job> jobs;
 
-    public Organization(){
-        this.ownerorgn=new HashSet<Job>();
-    }
+//    public Organization(){
+//        this.ownerorgn=new HashSet<Job>();
+//    }
 
 //    @ManyToMany
 //    private List<Job> org;
@@ -59,12 +63,20 @@ public class Organization {
         this.organizationAddress = organizationAddress;
     }
 
-
-    public Set<Job> getOwnerorgn() {
-        return ownerorgn;
+    public Set<Job> getJobs() {
+        return jobs;
     }
 
-    public void setOwnerorgn(Set<Job> ownerorgn) {
-        this.ownerorgn = ownerorgn;
+    public void setJobs(Set<Job> jobs) {
+        this.jobs = jobs;
     }
+
+
+//    public Set<Job> getOwnerorgn() {
+//        return ownerorgn;
+//    }
+//
+//    public void setOwnerorgn(Set<Job> ownerorgn) {
+//        this.ownerorgn = ownerorgn;
+//    }
 }

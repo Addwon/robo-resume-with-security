@@ -32,18 +32,21 @@ public class Job {
     @Size(min=10)
     private String jobDescription;
 
+    @ManyToMany(mappedBy = "jobs")
+    private Set<Organization> organizations;
+
 //    @ManyToOne(cascade = CascadeType.ALL)
 //    private Organization organization;
 
     @ManyToMany(mappedBy="requiredSkills")
     private Set<Skill> skills;
 
-    @ManyToMany(mappedBy="ownerorgn")
-    private Set<Organization> orgn;
+//    @ManyToMany(mappedBy="ownerorgn")
+//    private Set<Organization> orgn;
 
     public Job(){
         skills=new HashSet<Skill>();
-        orgn=new HashSet<Organization>();
+//        orgn=new HashSet<Organization>();
     }
 
 //    @ManyToMany(mappedBy = "org")
@@ -97,14 +100,14 @@ public class Job {
         this.skills = skills;
     }
 
-
-    public Set<Organization> getOrgn() {
-        return orgn;
-    }
-
-    public void setOrgn(Set<Organization> orgn) {
-        this.orgn = orgn;
-    }
+//
+//    public Set<Organization> getOrgn() {
+//        return orgn;
+//    }
+//
+//    public void setOrgn(Set<Organization> orgn) {
+//        this.orgn = orgn;
+//    }
 
     public String get_orgnization() {
         return _orgnization;
@@ -112,5 +115,13 @@ public class Job {
 
     public void set_orgnization(String _orgnization) {
         this._orgnization = _orgnization;
+    }
+
+    public Set<Organization> getOrganizations() {
+        return organizations;
+    }
+
+    public void setOrganizations(Set<Organization> organizations) {
+        this.organizations = organizations;
     }
 }

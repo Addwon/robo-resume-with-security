@@ -116,6 +116,7 @@ public class DataLoader implements CommandLineRunner {
         job1.setJobDescription("Developing application software for small scale businesses");
         job1.setRequiredSkill(skill1.getType()+","+skill1.getSkillLevel());
         job1.setRequiredExperience("2 years");
+//        job1.setOrganizations(orgn1.getOrganizationName());
         job1.set_orgnization(orgn1.getOrganizationName()+" "+orgn1.getOrganizationAddress());
         jobRepository.save(job1);
 
